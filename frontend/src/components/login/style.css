@@ -1,0 +1,17 @@
+.login-layout {
+    text-align: center;
+}
+
+.wechat-scan {
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.container-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    width: 100%;
+}

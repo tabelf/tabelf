@@ -1,0 +1,9 @@
+.site-layout {
+    margin-left: 320px;
+}
+
+.site-content-background {
+    background: #ffffff;
+    padding: 0;
+    min-height: 80vh;
+}

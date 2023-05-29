@@ -1,0 +1,61 @@
+jwt: &jwt
+  jwt_key: ecd9fbe536d84138924e68999c844359         # key
+  jwt_expire: 2592000                               # 过期秒（30天）
+  jwt_issuer: tabelf                                # 签发者
+
+db: &db
+  enable: true
+  url: root:12345678@(127.0.0.1:3306)/binghuang?charset=utf8mb4&parseTime=true&loc=Local&interpolateParams=true # 数据库配置
+  driver: mysql
+  max_open_conns: 200
+  max_idle_conns: 50
+
+email: &email
+  username: xxxx@foxmail.com # qq 邮箱
+  password: xxxx             # 授权码
+  addr: smtp.qq.com
+
+redis: &redis
+  enable: false               # 不启动
+  addr: Here need set!
+
+basic: &basic
+  domain: localhost:3000      # 前端域名
+  env: local
+
+wechat: &wechat
+  appid: xxxxxxxx                             # 微信 appid
+  appsecret: xxxxxxxxxxxxxxxxxxxxxxxx         # 微信 appsecret
+  qr_expired: 300                             # 5分钟过期 = 5 * 60
+
+cos: &cos
+  secret_id: xxxxxxxxx                            # 腾讯cos id
+  secret_key: xxxxxxxxx                           # 腾讯cos key
+
+default:
+  Name: binghuang-api
+  Host: 0.0.0.0
+  Port: 8888
+  Timeout: 10000
+  MaxBytes: 10485760  # 10M
+  Log:
+    Level: "error"
+  basic:
+    <<: *basic
+  db:
+    <<: *db
+  wechat:
+    <<: *wechat
+  email:
+    <<: *email
+  cos:
+    <<: *cos
+  zlog:
+    path: logs/
+    service: plouto
+    enable_std_out: false
+    enable_file: false
+  redis:
+    <<: *redis
+  jwt:
+    <<: *jwt

@@ -1,0 +1,165 @@
+.community-layout-header {
+    background: #ffffff;
+    padding: 0;
+    height: 71px;
+    border-bottom: 1px solid #e9edf2;
+}
+
+.community-header-logo {
+    width: 81px;
+    margin-top: 2px;
+    margin-left: 20px;
+}
+
+.community-layout-header .ant-menu-horizontal {
+    border-bottom: 0;
+}
+
+.community-layout-header .header-user {
+    text-align: right;
+    margin-right: 35px;
+}
+
+.community-layout-content {
+    background: #fbfcfc;
+    padding: 0;
+}
+
+.community-layout-content-container {
+    min-height: 688px;
+}
+
+.community-element-container {
+    margin-top: 20px;
+    border-radius: 6px;
+    width: 213px;
+    border-color: transparent;
+    box-shadow: 0 1px 2px -2px rgb(0 0 0 / 16%), 0 3px 6px 0 rgb(0 0 0 / 12%), 0 5px 12px 4px rgb(0 0 0 / 9%);
+}
+
+.community-element-container > .ant-card-body {
+    padding: 8px;
+}
+
+.community-element-topic > h4 {
+    line-height: 36px;
+    color: #333;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-bottom: 0;
+}
+
+.community-element-meta {
+    font-size: 12px;
+    color: #aaa;
+}
+
+.community-element-meta-basic {
+    font-size: 12px;
+    color: #adadad;
+}
+
+.community-element-authority {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+.community-element-authority > span {
+    margin-right: 8px;
+}
+
+.detail-source-meta {
+    font-size: 12px;
+    color: #a6b9cd;
+}
+
+.detail-operate-btn {
+    text-align: right;
+}
+
+.detail-operate-btn .ant-btn {
+    border-color: #fff;
+    border-radius: 6px;
+    height: 38px;
+}
+
+.detail-source-container, .detail-source-tag {
+    padding: 0 90px;
+}
+
+.detail-source-author .ant-list-item-meta-avatar {
+    margin-top: 2px;
+}
+
+.detail-source-author .ant-list-item:hover {
+    background: #fff;
+}
+
+.detail-source-author .ant-list-item {
+    max-width: 100%;
+}
+
+.share-canvas {
+    padding: 0 90px;
+}
+
+.community-layout-content .ant-pagination-item-link,
+.community-layout-content .ant-pagination-item {
+    border-radius: 4px;
+}
+
+.community-btn-group {
+    border-radius: 6px;
+    border-color: transparent;
+    box-shadow: 0 1px 2px -2px rgb(0 0 0 / 16%), 0 3px 6px 0 rgb(0 0 0 / 12%), 0 5px 12px 4px rgb(0 0 0 / 9%);
+}
+
+.community-btn-group  a {
+    color: #333;
+}
+
+.community-btn-group .ant-card-body {
+    padding: 12px 12px;
+}
+
+.community-detail-btn-group {
+    border-radius: 6px;
+}
+
+.community-detail-btn-group .ant-card-body {
+    padding: 20px 20px;
+}
+
+.community-detail-btn-style {
+    font-size: 20px;
+    color: #505050;
+}
+
+.community-detail-btn-focus .ant-btn {
+    background: #ccc;
+    border-color: #ccc;
+}
+
+.community-detail-tags {
+    background: #eee;
+    border-color: #eee;
+    color: #999;
+    border-radius: 15px;
+    line-height: 24px;
+    padding: 0 13px;
+}
+
+.community-detail-author {
+    width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.community-bottom-ads  .ant-card-body {
+    padding: 0;
+}

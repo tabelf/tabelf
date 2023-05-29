@@ -1,0 +1,7531 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "binghuang API",
+    "version": ""
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/anonymous/account/auth/login": {
+      "post": {
+        "summary": "用户登录/注册",
+        "operationId": "AuthLogin",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AuthLoginResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AuthLoginRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "anonymous/account"
+        ]
+      }
+    },
+    "/anonymous/account/auth/login/qr_code": {
+      "get": {
+        "summary": "获取登录二维码",
+        "operationId": "GetAuthLoginQrCode",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetAuthLoginQrCodeResponse"
+            }
+          }
+        },
+        "requestBody": {},
+        "tags": [
+          "anonymous/account"
+        ]
+      }
+    },
+    "/anonymous/account/wechat/auth": {
+      "get": {
+        "summary": "OAuth微信验证服务请求",
+        "operationId": "GetAuthLoginWechatAuthority",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetAuthLoginWechatAuthorityResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "signature",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "nonce",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "echostr",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "timestamp",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "anonymous/account"
+        ]
+      },
+      "post": {
+        "summary": "OAuth微信消息功能回调",
+        "operationId": "WechatMessageCallback",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/WechatMessageCallbackResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/WechatMessageCallbackRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "anonymous/account"
+        ]
+      }
+    },
+    "/anonymous/article/category": {
+      "get": {
+        "summary": "匿名好文精选分类查询",
+        "operationId": "GetGoodArticleCategory",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetGoodArticleCategoryResponse"
+            }
+          }
+        },
+        "requestBody": {},
+        "tags": [
+          "anonymous/article"
+        ]
+      }
+    },
+    "/anonymous/article/hot": {
+      "get": {
+        "summary": "好文精选热榜",
+        "operationId": "GetHotGoodArticle",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetHotGoodArticleResponse"
+            }
+          }
+        },
+        "requestBody": {},
+        "tags": [
+          "anonymous/article"
+        ]
+      }
+    },
+    "/anonymous/article/norm": {
+      "get": {
+        "summary": "好文精选菜单数据",
+        "operationId": "GetGoodArticleMenuData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetGoodArticleMenuDataResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "anonymous/article"
+        ]
+      }
+    },
+    "/anonymous/article/recommend": {
+      "get": {
+        "summary": "好文精选查询",
+        "operationId": "GetGoodArticleRecommend",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetGoodArticleRecommendResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "category_uid",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sorted",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "anonymous/article"
+        ]
+      }
+    },
+    "/anonymous/article/{article_uid}/view": {
+      "put": {
+        "summary": "好文精选浏览",
+        "operationId": "ViewGoodArticle",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ViewGoodArticleResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "article_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ViewGoodArticleRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "anonymous/article"
+        ]
+      }
+    },
+    "/anonymous/community/category": {
+      "get": {
+        "summary": "分享社区分类查询",
+        "operationId": "GetPublicCommunityCategory",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetPublicCommunityCategoryResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "anonymous/community"
+        ]
+      }
+    },
+    "/anonymous/community/public": {
+      "get": {
+        "summary": "分享社区内容查询列表",
+        "operationId": "GetPublicCommunity",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetPublicCommunityResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "category_uid",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sorted",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "anonymous/community"
+        ]
+      }
+    },
+    "/anonymous/community/{community_uid}/detail": {
+      "get": {
+        "summary": "分享社区查询详情",
+        "operationId": "GetPublicCommunityDetail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetPublicCommunityDetailResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "community_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "user_uid",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "anonymous/community"
+        ]
+      }
+    },
+    "/anonymous/station/category": {
+      "get": {
+        "summary": "匿名好站推荐分类查询",
+        "operationId": "GetGoodStationCategory",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetGoodStationCategoryResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "anonymous/station"
+        ]
+      }
+    },
+    "/anonymous/station/recommend": {
+      "get": {
+        "summary": "好站推荐查询",
+        "operationId": "GetGoodStationRecommend",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetGoodStationRecommendResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "category_uid",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sorted",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "anonymous/station"
+        ]
+      }
+    },
+    "/anonymous/upgrade/recharge": {
+      "get": {
+        "summary": "查看充值列表",
+        "operationId": "GetUpgradeRecharges",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetUpgradeRechargesResponse"
+            }
+          }
+        },
+        "requestBody": {},
+        "tags": [
+          "anonymous/upgrade"
+        ]
+      }
+    },
+    "/api/global/datetime": {
+      "get": {
+        "summary": "获取系统时间",
+        "operationId": "GetTime",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/TimeResp"
+            }
+          }
+        },
+        "requestBody": {},
+        "tags": [
+          "global"
+        ]
+      }
+    },
+    "/api/global/error": {
+      "get": {
+        "summary": "报错",
+        "operationId": "GetError",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "global"
+        ]
+      }
+    },
+    "/api/hello/{name}": {
+      "get": {
+        "summary": "health check",
+        "operationId": "SayHello",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/HelloResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "global"
+        ]
+      }
+    },
+    "/customer/{user_uid}/article/audit": {
+      "get": {
+        "summary": "好文精选查询内容审核",
+        "operationId": "GetGoodArticleAudit",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetGoodArticleAuditResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "article"
+        ]
+      }
+    },
+    "/customer/{user_uid}/article/collection": {
+      "get": {
+        "summary": "好文精选查询我的收藏",
+        "operationId": "GetGoodArticleCollection",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetGoodArticleCollectionResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "article"
+        ]
+      }
+    },
+    "/customer/{user_uid}/article/image": {
+      "put": {
+        "summary": "上传好文精选头图",
+        "operationId": "UploadGoodArticleImage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UploadGoodArticleImageResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UploadGoodArticleImageRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "article"
+        ]
+      }
+    },
+    "/customer/{user_uid}/article/recommend": {
+      "post": {
+        "summary": "添加好文精选",
+        "operationId": "AddGoodArticleRecommend",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AddGoodArticleRecommendResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddGoodArticleRecommendRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "article"
+        ]
+      }
+    },
+    "/customer/{user_uid}/article/submit": {
+      "get": {
+        "summary": "好文精选我的发布",
+        "operationId": "GetGoodArticleSubmit",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetGoodArticleSubmitResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "article"
+        ]
+      }
+    },
+    "/customer/{user_uid}/article/{article_uid}/audit": {
+      "put": {
+        "summary": "好文精选内容审核",
+        "operationId": "UpdateGoodArticleAudit",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateGoodArticleAuditResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "article_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateGoodArticleAuditRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "article"
+        ]
+      }
+    },
+    "/customer/{user_uid}/article/{article_uid}/collection": {
+      "put": {
+        "summary": "好文精选添加到我的空间",
+        "operationId": "GoodArticleCollection",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GoodArticleCollectionResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "article_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GoodArticleCollectionRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "article"
+        ]
+      }
+    },
+    "/customer/{user_uid}/article/{article_uid}/detail": {
+      "get": {
+        "summary": "查询好文精选详情",
+        "operationId": "GetGoodArticle",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetGoodArticleResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "article_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "article"
+        ]
+      },
+      "put": {
+        "summary": "更新好文精选详情",
+        "operationId": "UpdateGoodArticle",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateGoodArticleResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "article_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateGoodArticleRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "article"
+        ]
+      }
+    },
+    "/customer/{user_uid}/article/{article_uid}/meta": {
+      "put": {
+        "summary": "更新好文精选元数据",
+        "operationId": "UpdateGoodArticleMeta",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateGoodArticleMetaResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "article_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateGoodArticleMetaRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "article"
+        ]
+      }
+    },
+    "/customer/{user_uid}/community/audit": {
+      "get": {
+        "summary": "查询管理需要审核的资源",
+        "operationId": "GetAuditPublicCommunity",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetAuditPublicCommunityResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "community/audit"
+        ]
+      }
+    },
+    "/customer/{user_uid}/community/image": {
+      "put": {
+        "summary": "更新分享社区图片",
+        "operationId": "UpdatePublicCommunityImage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdatePublicCommunityImageResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdatePublicCommunityImageRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "community"
+        ]
+      }
+    },
+    "/customer/{user_uid}/community/public": {
+      "post": {
+        "summary": "发布资源到社区",
+        "operationId": "CreatePublicCommunity",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CreatePublicCommunityResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreatePublicCommunityRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "community"
+        ]
+      }
+    },
+    "/customer/{user_uid}/community/self": {
+      "get": {
+        "summary": "查询自我发布资源分类",
+        "operationId": "GetSelfPublicCommunity",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetSelfPublicCommunityResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "community"
+        ]
+      }
+    },
+    "/customer/{user_uid}/community/{community_uid}/audit": {
+      "put": {
+        "summary": "更新发布资源审核操作",
+        "operationId": "UpdateAuditPublicCommunity",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateAuditPublicCommunityResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "community_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateAuditPublicCommunityRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "community/audit"
+        ]
+      }
+    },
+    "/customer/{user_uid}/community/{community_uid}/close": {
+      "delete": {
+        "summary": "关闭分享社区资源",
+        "operationId": "ClosePublicCommunity",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ClosePublicCommunityResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "community_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ClosePublicCommunityRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "community"
+        ]
+      }
+    },
+    "/customer/{user_uid}/community/{community_uid}/meta": {
+      "put": {
+        "summary": "更新分享社区元数据",
+        "operationId": "UpdatePublicCommunityMeta",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdatePublicCommunityMetaResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "community_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdatePublicCommunityMetaRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "community"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/feedback": {
+      "post": {
+        "summary": "问题反馈",
+        "operationId": "CreateFeedback",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CreateFeedbackResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateFeedbackRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "feedback"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/focus": {
+      "post": {
+        "summary": "关注用户",
+        "operationId": "FocusPersonalAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/FocusPersonalAccountResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FocusPersonalAccountRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "customer/account"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/folder/{folder_uid}/workspace": {
+      "post": {
+        "summary": "添加工作空间",
+        "operationId": "AddWorkspace",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AddWorkspaceResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "folder_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddWorkspaceRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "customer/workspace"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/folder/{folder_uid}/workspace/switch": {
+      "put": {
+        "summary": "打开或关闭工作区域",
+        "operationId": "UpdateWorkspaceSwitch",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateWorkspaceSwitchResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "folder_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateWorkspaceSwitchRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "customer/workspace"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/folder/{folder_uid}/workspace/{workspace_uid}": {
+      "delete": {
+        "summary": "删除工作空间",
+        "operationId": "DeleteWorkspace",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeleteWorkspaceResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "folder_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "workspace_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteWorkspaceRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "customer/workspace"
+        ]
+      },
+      "put": {
+        "summary": "更新工作空间",
+        "operationId": "UpdateWorkspace",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateWorkspaceResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "folder_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "workspace_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateWorkspaceRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "customer/workspace"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/folder/{folder_uid}/workspace/{workspace_uid}/local": {
+      "post": {
+        "summary": "添加收藏本地文件链接",
+        "operationId": "AddPersonalLocalFileLink",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AddPersonalLocalFileLinkResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "folder_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "workspace_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddPersonalLocalFileLinkRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "customer/weblink"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/folder/{folder_uid}/workspace/{workspace_uid}/sort": {
+      "put": {
+        "summary": "更新工作区域链接排序",
+        "operationId": "UpdateWorkspaceWebLinks",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateWorkspaceWebLinksResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "folder_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "workspace_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateWorkspaceWebLinksRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "customer/weblink"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/folder/{folder_uid}/workspace/{workspace_uid}/weblink": {
+      "post": {
+        "summary": "添加收藏链接",
+        "operationId": "AddPersonalWebLink",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AddPersonalWebLinkResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "folder_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "workspace_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddPersonalWebLinkRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "customer/weblink"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/folder/{folder_uid}/workspace/{workspace_uid}/weblink/{link_uid}": {
+      "delete": {
+        "summary": "删除收藏链接",
+        "operationId": "DeletePersonalWebLink",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeletePersonalWebLinkResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "folder_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "workspace_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "link_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeletePersonalWebLinkRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "customer/weblink"
+        ]
+      },
+      "put": {
+        "summary": "更新收藏链接",
+        "operationId": "UpdatePersonalWebLink",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdatePersonalWebLinkResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "folder_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "workspace_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "link_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdatePersonalWebLinkRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "customer/weblink"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/folders": {
+      "get": {
+        "summary": "获取个人文件列表",
+        "operationId": "GetPersonalFolders",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetPersonalFoldersResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "customer/folder"
+        ]
+      },
+      "post": {
+        "summary": "添加个人文件",
+        "operationId": "AddPersonalFolder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AddPersonalFolderResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddPersonalFolderRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "customer/folder"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/folders/share": {
+      "get": {
+        "summary": "查询协作个人文件链接",
+        "operationId": "GetSharePersonalFolder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetSharePersonalFolderResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "share/folder"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/folders/share/{share_uid}": {
+      "delete": {
+        "summary": "删除分享文件信息",
+        "operationId": "DeleteSharePersonalFolder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeleteSharePersonalFolderResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "share_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteSharePersonalFolderRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "share/folder"
+        ]
+      },
+      "put": {
+        "summary": "更新分享文件信息",
+        "operationId": "UpdateSharePersonalFolder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateSharePersonalFolderResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "share_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateSharePersonalFolderRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "share/folder"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/folders/share/{share_uid}/copy": {
+      "post": {
+        "summary": "复制分享文件到我到个人文件",
+        "operationId": "CopySharePersonalFolder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CopySharePersonalFolderResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "share_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CopySharePersonalFolderRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "share/folder"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/folders/share/{share_uid}/exit": {
+      "delete": {
+        "summary": "退出分享协作",
+        "operationId": "ExitSharePersonalFolder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ExitSharePersonalFolderResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "share_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ExitSharePersonalFolderRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "share/folder"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/folders/share/{share_uid}/friend": {
+      "post": {
+        "summary": "个人文件通过邀请分享好友",
+        "operationId": "ShareFriendFolder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ShareFriendFolderResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "share_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ShareFriendFolderRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "share/folder"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/folders/share/{share_uid}/join": {
+      "post": {
+        "summary": "加入分享个人文件链接的协作",
+        "operationId": "JoinShareLink",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/JoinShareLinkResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "share_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/JoinShareLinkRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "share/link"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/folders/share/{share_uid}/personnel": {
+      "get": {
+        "summary": "查询协作管理的人员",
+        "operationId": "GetShareAllPersonnel",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetShareAllPersonnelResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "share_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "share/folder"
+        ]
+      },
+      "delete": {
+        "summary": "创建者剔除协作人员",
+        "operationId": "DeleteSharePersonnel",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeleteSharePersonnelResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "share_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteSharePersonnelRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "share/folder"
+        ]
+      },
+      "put": {
+        "summary": "创建者管理协作人员",
+        "operationId": "UpdateManageSharePersonnel",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateManageSharePersonnelResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "share_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateManageSharePersonnelRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "share/folder"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/folders/share/{share_uid}/workspace/{workspace_uid}/weblink": {
+      "post": {
+        "summary": "添加协作收藏链接",
+        "operationId": "AddSharePersonalWebLink",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AddSharePersonalWebLinkResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "share_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "workspace_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddSharePersonalWebLinkRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "share/link"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/folders/workspace/content": {
+      "get": {
+        "summary": "根据文件编号获取工作空间区域内容",
+        "operationId": "GetFolderNumberWorkspaceContent",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetFolderNumberWorkspaceContentResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "folder_number",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "customer/workspace"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/folders/workspace/content/share": {
+      "get": {
+        "summary": "根据协作信息获取工作空间区域内容",
+        "operationId": "GetFolderNumberShareWorkspaceContent",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetFolderNumberShareWorkspaceContentResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "folder_number",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "customer/workspace"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/folders/{folder_uid}": {
+      "delete": {
+        "summary": "删除个人文件",
+        "operationId": "DeletePersonalFolder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeletePersonalFolderResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "folder_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeletePersonalFolderRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "customer/folder"
+        ]
+      },
+      "put": {
+        "summary": "更新个人文件",
+        "operationId": "UpdatePersonalFolder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdatePersonalFolderResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "folder_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdatePersonalFolderRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "customer/folder"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/folders/{folder_uid}/copy": {
+      "post": {
+        "summary": "复制个人文件",
+        "operationId": "CopyPersonalFolder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CopyPersonalFolderResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "folder_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CopyPersonalFolderRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "customer/folder"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/folders/{folder_uid}/share": {
+      "post": {
+        "summary": "分享个人文件链接",
+        "operationId": "ShareFolderLink",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ShareFolderLinkResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "folder_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ShareFolderLinkRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "share/link"
+        ]
+      },
+      "put": {
+        "summary": "个人文件分享管理",
+        "operationId": "SharePersonalFolder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/SharePersonalFolderResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "folder_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SharePersonalFolderRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "share/folder"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/folders/{folder_uid}/share/{share_uid}": {
+      "put": {
+        "summary": "修改个人文件分享链接",
+        "operationId": "UpdateShareLink",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateShareLinkResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "folder_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "share_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateShareLinkRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "share/link"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/folders/{folder_uid}/share/{share_uid}/coll/{coll_uid}": {
+      "put": {
+        "summary": "创建者更新协作人员权限",
+        "operationId": "UpdateSharePersonnel",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateSharePersonnelResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "folder_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "share_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "coll_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateSharePersonnelRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "share/folder"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/folders/{folder_uid}/workspace/content": {
+      "get": {
+        "summary": "根据文件UID获取工作空间区域内容",
+        "operationId": "GetWorkspaceContent",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetWorkspaceContentResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "folder_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "customer/workspace"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/info": {
+      "get": {
+        "summary": "获取个人消息",
+        "operationId": "GetPersonalAccountInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetPersonalAccountInfoResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "customer/account"
+        ]
+      },
+      "put": {
+        "summary": "更新个人消息",
+        "operationId": "UpdatePersonalAccountInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdatePersonalAccountInfoResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdatePersonalAccountInfoRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "customer/account"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/invite": {
+      "get": {
+        "summary": "查询邀请记录信息",
+        "operationId": "GetPersonalInvite",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetPersonalInviteResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "customer/account"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/message": {
+      "get": {
+        "summary": "查询消息中心",
+        "operationId": "GetMessages",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetMessagesResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "msg_type",
+            "description": " 0 未读消息，1 全部消息",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "message"
+        ]
+      },
+      "delete": {
+        "summary": "删除全部消息",
+        "operationId": "DelAllMessage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DelAllMessageResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DelAllMessageRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "message"
+        ]
+      },
+      "put": {
+        "summary": "全部标记已读",
+        "operationId": "ReadAllMessage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ReadAllMessageResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ReadAllMessageRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "message"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/message/{message_uid}": {
+      "delete": {
+        "summary": "删除消息",
+        "operationId": "DelMessage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DelMessageResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "message_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DelMessageRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "message"
+        ]
+      },
+      "put": {
+        "summary": "标记已读",
+        "operationId": "ReadMessage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ReadMessageResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "message_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ReadMessageRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "message"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/search": {
+      "get": {
+        "summary": "搜索收藏和共享的链接",
+        "operationId": "SearchWebLinks",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/SearchWebLinksResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "keyword",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "description": " 0 为全部, 1 为我的, 2 为协作",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "customer/account"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/teams": {
+      "get": {
+        "summary": "获取个人团队消息",
+        "operationId": "GetPersonalTeams",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetPersonalTeamsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "customer/account"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/upload": {
+      "put": {
+        "summary": "上传个人图片",
+        "operationId": "UpdatePersonalAccountImage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdatePersonalAccountImageResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdatePersonalAccountImageRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "customer/account"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/weblink/info": {
+      "get": {
+        "summary": "获取个人网址数量",
+        "operationId": "GetPersonalWebLinkInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetPersonalWebLinkInfoResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "customer/account"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/weblink/recent": {
+      "get": {
+        "summary": "查看最近更新的收藏链接",
+        "operationId": "GetRecentPersonalWebLink",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetRecentPersonalWebLinkResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "customer/weblink"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/weblink/recycling": {
+      "get": {
+        "summary": "查看回收站收藏链接",
+        "operationId": "GetRecyclingPersonalWebLink",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetRecyclingPersonalWebLinkResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "customer/weblink"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/weblink/{link_uid}/forever": {
+      "delete": {
+        "summary": "回收站彻底删除的收藏链接",
+        "operationId": "DeleteForeverPersonalWebLink",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeleteForeverPersonalWebLinkResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "link_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteForeverPersonalWebLinkRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "customer/weblink"
+        ]
+      }
+    },
+    "/customer/{user_uid}/personal/weblink/{link_uid}/restore": {
+      "put": {
+        "summary": "回收站恢复收藏链接",
+        "operationId": "RestoreDeletePersonalWebLink",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/RestoreDeletePersonalWebLinkResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "link_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RestoreDeletePersonalWebLinkRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "customer/weblink"
+        ]
+      }
+    },
+    "/customer/{user_uid}/station/audit": {
+      "get": {
+        "summary": "查询管理需要审核的好站推荐",
+        "operationId": "GetAuditGoodStation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetAuditGoodStationResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "station/audit"
+        ]
+      }
+    },
+    "/customer/{user_uid}/station/image": {
+      "put": {
+        "summary": "上传好站推荐大图",
+        "operationId": "UploadStationImage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UploadStationImageResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UploadStationImageRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "station"
+        ]
+      }
+    },
+    "/customer/{user_uid}/station/recommend": {
+      "post": {
+        "summary": "添加好站推荐",
+        "operationId": "AddGoodStationRecommend",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AddGoodStationRecommendResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddGoodStationRecommendRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "station"
+        ]
+      }
+    },
+    "/customer/{user_uid}/station/{station_uid}": {
+      "put": {
+        "summary": "审核的好站推荐",
+        "operationId": "UpdateAuditGoodStation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateAuditGoodStationResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "station_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateAuditGoodStationRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "station/audit"
+        ]
+      }
+    },
+    "/customer/{user_uid}/station/{station_uid}/detail": {
+      "get": {
+        "summary": "查询好站推荐详情",
+        "operationId": "GetGoodStation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetGoodStationResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "station_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "station"
+        ]
+      },
+      "put": {
+        "summary": "更新好站推荐详情",
+        "operationId": "UpdateGoodStation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateGoodStationResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "station_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateGoodStationRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "station"
+        ]
+      }
+    },
+    "/customer/{user_uid}/station/{station_uid}/meta": {
+      "put": {
+        "summary": "更新好站推荐元数据",
+        "operationId": "UpdateGoodStationMeta",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateGoodStationMetaResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "station_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateGoodStationMetaRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "station"
+        ]
+      }
+    },
+    "/customer/{user_uid}/station/{station_uid}/star": {
+      "put": {
+        "summary": "好站推荐收藏",
+        "operationId": "GoodStationStar",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GoodStationStarResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "station_uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GoodStationStarRequest"
+            }
+          }
+        ],
+        "requestBody": {},
+        "tags": [
+          "station"
+        ]
+      }
+    },
+    "/swagger": {
+      "get": {
+        "summary": "swagger 文档",
+        "operationId": "Swag",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "requestBody": {},
+        "tags": [
+          "swagger"
+        ]
+      }
+    },
+    "/swagger-json": {
+      "get": {
+        "operationId": "SwagJSON",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "requestBody": {},
+        "tags": [
+          "swagger"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "Achievement": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string",
+          "description": " 用户uid"
+        },
+        "image": {
+          "type": "string",
+          "description": " 用户图片"
+        },
+        "user_name": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        }
+      },
+      "title": "Achievement",
+      "required": [
+        "user_uid",
+        "image",
+        "user_name",
+        "created_at"
+      ]
+    },
+    "AddGoodArticleRecommendRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "category_uid": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        }
+      },
+      "title": "AddGoodArticleRecommendRequest",
+      "required": [
+        "user_uid",
+        "category_uid",
+        "link",
+        "source"
+      ]
+    },
+    "AddGoodArticleRecommendResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "AddGoodArticleRecommendResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "AddGoodStationRecommendRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "category_uid": {
+          "type": "string"
+        },
+        "site_name": {
+          "type": "string",
+          "description": " 网站名称"
+        },
+        "link": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "AddGoodStationRecommendRequest",
+      "required": [
+        "user_uid",
+        "category_uid",
+        "site_name",
+        "link"
+      ]
+    },
+    "AddGoodStationRecommendResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "AddGoodStationRecommendResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "AddPersonalFolderRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "folder_name": {
+          "type": "string"
+        }
+      },
+      "title": "AddPersonalFolderRequest",
+      "required": [
+        "user_uid",
+        "folder_name"
+      ]
+    },
+    "AddPersonalFolderResponse": {
+      "type": "object",
+      "properties": {
+        "folder_uid": {
+          "type": "string"
+        },
+        "folder_number": {
+          "type": "string"
+        }
+      },
+      "title": "AddPersonalFolderResponse",
+      "required": [
+        "folder_uid",
+        "folder_number"
+      ]
+    },
+    "AddPersonalLocalFileLinkRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "folder_uid": {
+          "type": "string"
+        },
+        "workspace_uid": {
+          "type": "string"
+        },
+        "file": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/byte"
+          }
+        },
+        "filename": {
+          "type": "string"
+        },
+        "file_type": {
+          "type": "string"
+        }
+      },
+      "title": "AddPersonalLocalFileLinkRequest",
+      "required": [
+        "user_uid",
+        "folder_uid",
+        "workspace_uid"
+      ]
+    },
+    "AddPersonalLocalFileLinkResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "AddPersonalLocalFileLinkResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "AddPersonalWebLinkRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "folder_uid": {
+          "type": "string"
+        },
+        "workspace_uid": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "title": "AddPersonalWebLinkRequest",
+      "required": [
+        "user_uid",
+        "folder_uid",
+        "workspace_uid",
+        "url"
+      ]
+    },
+    "AddPersonalWebLinkResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "AddPersonalWebLinkResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "AddSharePersonalWebLinkRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "share_uid": {
+          "type": "string"
+        },
+        "workspace_uid": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      },
+      "title": "AddSharePersonalWebLinkRequest",
+      "required": [
+        "user_uid",
+        "share_uid",
+        "workspace_uid",
+        "url"
+      ]
+    },
+    "AddSharePersonalWebLinkResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "AddSharePersonalWebLinkResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "AddWorkspaceRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "folder_uid": {
+          "type": "string"
+        },
+        "workspace_name": {
+          "type": "string"
+        }
+      },
+      "title": "AddWorkspaceRequest",
+      "required": [
+        "user_uid",
+        "folder_uid",
+        "workspace_name"
+      ]
+    },
+    "AddWorkspaceResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "AddWorkspaceResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "AuditWorkspace": {
+      "type": "object",
+      "properties": {
+        "is_open": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "workspace_uid": {
+          "type": "string"
+        },
+        "workspace_name": {
+          "type": "string"
+        },
+        "web_links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PersonalWebLink"
+          }
+        }
+      },
+      "title": "AuditWorkspace",
+      "required": [
+        "is_open",
+        "workspace_uid",
+        "workspace_name",
+        "web_links"
+      ]
+    },
+    "AuthLoginRequest": {
+      "type": "object",
+      "properties": {
+        "auth_code": {
+          "type": "string"
+        },
+        "referral_uid": {
+          "type": "string"
+        }
+      },
+      "title": "AuthLoginRequest",
+      "required": [
+        "auth_code"
+      ]
+    },
+    "AuthLoginResponse": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        }
+      },
+      "title": "AuthLoginResponse",
+      "required": [
+        "user_uid",
+        "username",
+        "token"
+      ]
+    },
+    "ClosePublicCommunityRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "community_uid": {
+          "type": "string"
+        }
+      },
+      "title": "ClosePublicCommunityRequest",
+      "required": [
+        "user_uid",
+        "community_uid"
+      ]
+    },
+    "ClosePublicCommunityResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "ClosePublicCommunityResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "CopyPersonalFolderRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "folder_uid": {
+          "type": "string"
+        },
+        "type": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "CopyPersonalFolderRequest",
+      "required": [
+        "user_uid",
+        "folder_uid",
+        "type"
+      ]
+    },
+    "CopyPersonalFolderResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "CopyPersonalFolderResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "CopySharePersonalFolderRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "share_uid": {
+          "type": "string"
+        },
+        "type": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "CopySharePersonalFolderRequest",
+      "required": [
+        "user_uid",
+        "share_uid",
+        "type"
+      ]
+    },
+    "CopySharePersonalFolderResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "CopySharePersonalFolderResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "CreateFeedbackRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "order_number": {
+          "type": "string"
+        }
+      },
+      "title": "CreateFeedbackRequest",
+      "required": [
+        "user_uid",
+        "category"
+      ]
+    },
+    "CreateFeedbackResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "CreateFeedbackResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "CreatePublicCommunityRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "category_uid": {
+          "type": "string"
+        },
+        "folder_uid": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "CreatePublicCommunityRequest",
+      "required": [
+        "user_uid",
+        "category_uid",
+        "folder_uid",
+        "title",
+        "description"
+      ]
+    },
+    "CreatePublicCommunityResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "CreatePublicCommunityResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "DelAllMessageRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        }
+      },
+      "title": "DelAllMessageRequest",
+      "required": [
+        "user_uid"
+      ]
+    },
+    "DelAllMessageResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "DelAllMessageResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "DelMessageRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "message_uid": {
+          "type": "string"
+        }
+      },
+      "title": "DelMessageRequest",
+      "required": [
+        "user_uid",
+        "message_uid"
+      ]
+    },
+    "DelMessageResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "DelMessageResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "DeleteForeverPersonalWebLinkRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "link_uid": {
+          "type": "string"
+        }
+      },
+      "title": "DeleteForeverPersonalWebLinkRequest",
+      "required": [
+        "user_uid",
+        "link_uid"
+      ]
+    },
+    "DeleteForeverPersonalWebLinkResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "DeleteForeverPersonalWebLinkResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "DeletePersonalFolderRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "folder_uid": {
+          "type": "string"
+        }
+      },
+      "title": "DeletePersonalFolderRequest",
+      "required": [
+        "user_uid",
+        "folder_uid"
+      ]
+    },
+    "DeletePersonalFolderResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "DeletePersonalFolderResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "DeletePersonalWebLinkRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "folder_uid": {
+          "type": "string"
+        },
+        "workspace_uid": {
+          "type": "string"
+        },
+        "link_uid": {
+          "type": "string"
+        }
+      },
+      "title": "DeletePersonalWebLinkRequest",
+      "required": [
+        "user_uid",
+        "folder_uid",
+        "workspace_uid",
+        "link_uid"
+      ]
+    },
+    "DeletePersonalWebLinkResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "DeletePersonalWebLinkResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "DeleteSharePersonalFolderRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "share_uid": {
+          "type": "string"
+        }
+      },
+      "title": "DeleteSharePersonalFolderRequest",
+      "required": [
+        "user_uid",
+        "share_uid"
+      ]
+    },
+    "DeleteSharePersonalFolderResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "DeleteSharePersonalFolderResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "DeleteSharePersonnelRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "share_uid": {
+          "type": "string"
+        },
+        "other_user_uid": {
+          "type": "string"
+        }
+      },
+      "title": "DeleteSharePersonnelRequest",
+      "required": [
+        "user_uid",
+        "share_uid",
+        "other_user_uid"
+      ]
+    },
+    "DeleteSharePersonnelResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "DeleteSharePersonnelResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "DeleteWorkspaceRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "folder_uid": {
+          "type": "string"
+        },
+        "workspace_uid": {
+          "type": "string"
+        }
+      },
+      "title": "DeleteWorkspaceRequest",
+      "required": [
+        "user_uid",
+        "folder_uid",
+        "workspace_uid"
+      ]
+    },
+    "DeleteWorkspaceResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "DeleteWorkspaceResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "EmptyReq": {
+      "type": "object",
+      "title": "EmptyReq"
+    },
+    "ErrorMessage": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "trace_id": {
+          "type": "string"
+        },
+        "span_id": {
+          "type": "string"
+        }
+      },
+      "title": "ErrorMessage",
+      "required": [
+        "code",
+        "message",
+        "trace_id",
+        "span_id"
+      ]
+    },
+    "ErrorReq": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "ErrorReq",
+      "required": [
+        "code"
+      ]
+    },
+    "ErrorResp": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "ErrorResp",
+      "required": [
+        "code",
+        "message"
+      ]
+    },
+    "ExitSharePersonalFolderRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "share_uid": {
+          "type": "string"
+        }
+      },
+      "title": "ExitSharePersonalFolderRequest",
+      "required": [
+        "user_uid",
+        "share_uid"
+      ]
+    },
+    "ExitSharePersonalFolderResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "ExitSharePersonalFolderResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "FocusPersonalAccountRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "followee_uid": {
+          "type": "string",
+          "description": " 被关注者"
+        },
+        "status": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": " true 关注"
+        }
+      },
+      "title": "FocusPersonalAccountRequest",
+      "required": [
+        "user_uid",
+        "followee_uid",
+        "status"
+      ]
+    },
+    "FocusPersonalAccountResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "FocusPersonalAccountResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "GetAuditGoodStationRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        }
+      },
+      "title": "GetAuditGoodStationRequest",
+      "required": [
+        "user_uid"
+      ]
+    },
+    "GetAuditGoodStationResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GoodStationRecommend"
+          }
+        }
+      },
+      "title": "GetAuditGoodStationResponse",
+      "required": [
+        "data"
+      ]
+    },
+    "GetAuditPublicCommunityRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        }
+      },
+      "title": "GetAuditPublicCommunityRequest",
+      "required": [
+        "user_uid"
+      ]
+    },
+    "GetAuditPublicCommunityResponse": {
+      "type": "object",
+      "properties": {
+        "community_uid": {
+          "type": "string"
+        },
+        "community_title": {
+          "type": "string"
+        },
+        "community_description": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "folder_uid": {
+          "type": "string"
+        },
+        "folder_number": {
+          "type": "string"
+        },
+        "folder_name": {
+          "type": "string"
+        },
+        "audit_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "personal_workspaces": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AuditWorkspace"
+          }
+        }
+      },
+      "title": "GetAuditPublicCommunityResponse",
+      "required": [
+        "community_uid",
+        "community_title",
+        "community_description",
+        "status",
+        "folder_uid",
+        "folder_number",
+        "folder_name",
+        "audit_count",
+        "personal_workspaces"
+      ]
+    },
+    "GetAuthLoginQrCodeRequest": {
+      "type": "object",
+      "title": "GetAuthLoginQrCodeRequest"
+    },
+    "GetAuthLoginQrCodeResponse": {
+      "type": "object",
+      "properties": {
+        "expired_at": {
+          "type": "string",
+          "description": " 过期时间"
+        },
+        "url": {
+          "type": "string",
+          "description": " 登录二维码"
+        }
+      },
+      "title": "GetAuthLoginQrCodeResponse",
+      "required": [
+        "expired_at",
+        "url"
+      ]
+    },
+    "GetAuthLoginWechatAuthorityRequest": {
+      "type": "object",
+      "properties": {
+        "signature": {
+          "type": "string"
+        },
+        "nonce": {
+          "type": "string"
+        },
+        "echostr": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string"
+        }
+      },
+      "title": "GetAuthLoginWechatAuthorityRequest",
+      "required": [
+        "signature",
+        "nonce",
+        "echostr",
+        "timestamp"
+      ]
+    },
+    "GetAuthLoginWechatAuthorityResponse": {
+      "type": "object",
+      "properties": {
+        "echostr": {
+          "type": "string"
+        }
+      },
+      "title": "GetAuthLoginWechatAuthorityResponse",
+      "required": [
+        "echostr"
+      ]
+    },
+    "GetFolderNumberShareWorkspaceContentRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "folder_number": {
+          "type": "string"
+        }
+      },
+      "title": "GetFolderNumberShareWorkspaceContentRequest",
+      "required": [
+        "user_uid",
+        "folder_number"
+      ]
+    },
+    "GetFolderNumberShareWorkspaceContentResponse": {
+      "type": "object",
+      "properties": {
+        "authority": {
+          "type": "string"
+        },
+        "share_uid": {
+          "type": "string"
+        },
+        "folder_uid": {
+          "type": "string"
+        },
+        "folder_number": {
+          "type": "string"
+        },
+        "folder_name": {
+          "type": "string"
+        },
+        "active_workspace_uids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "personal_workspaces": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PersonalWorkspace"
+          }
+        }
+      },
+      "title": "GetFolderNumberShareWorkspaceContentResponse",
+      "required": [
+        "authority",
+        "share_uid",
+        "folder_uid",
+        "folder_number",
+        "folder_name",
+        "active_workspace_uids",
+        "personal_workspaces"
+      ]
+    },
+    "GetFolderNumberWorkspaceContentRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "folder_number": {
+          "type": "string"
+        }
+      },
+      "title": "GetFolderNumberWorkspaceContentRequest",
+      "required": [
+        "user_uid",
+        "folder_number"
+      ]
+    },
+    "GetFolderNumberWorkspaceContentResponse": {
+      "type": "object",
+      "properties": {
+        "folder_uid": {
+          "type": "string"
+        },
+        "folder_number": {
+          "type": "string"
+        },
+        "folder_name": {
+          "type": "string"
+        },
+        "active_workspace_uids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "personal_workspaces": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PersonalWorkspace"
+          }
+        }
+      },
+      "title": "GetFolderNumberWorkspaceContentResponse",
+      "required": [
+        "folder_uid",
+        "folder_number",
+        "folder_name",
+        "active_workspace_uids",
+        "personal_workspaces"
+      ]
+    },
+    "GetGoodArticleAuditRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        }
+      },
+      "title": "GetGoodArticleAuditRequest",
+      "required": [
+        "user_uid"
+      ]
+    },
+    "GetGoodArticleAuditResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GoodArticleRecommend"
+          }
+        }
+      },
+      "title": "GetGoodArticleAuditResponse",
+      "required": [
+        "data"
+      ]
+    },
+    "GetGoodArticleCategoryRequest": {
+      "type": "object",
+      "title": "GetGoodArticleCategoryRequest"
+    },
+    "GetGoodArticleCategoryResponse": {
+      "type": "object",
+      "properties": {
+        "categories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GoodArticleCategory"
+          }
+        }
+      },
+      "title": "GetGoodArticleCategoryResponse",
+      "required": [
+        "categories"
+      ]
+    },
+    "GetGoodArticleCollectionRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        }
+      },
+      "title": "GetGoodArticleCollectionRequest",
+      "required": [
+        "user_uid"
+      ]
+    },
+    "GetGoodArticleCollectionResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GoodArticleRecommend"
+          }
+        }
+      },
+      "title": "GetGoodArticleCollectionResponse",
+      "required": [
+        "data"
+      ]
+    },
+    "GetGoodArticleMenuDataRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        }
+      },
+      "title": "GetGoodArticleMenuDataRequest"
+    },
+    "GetGoodArticleMenuDataResponse": {
+      "type": "object",
+      "properties": {
+        "has_anonymous": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "has_authority": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "collection": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "publish": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "audit": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "GetGoodArticleMenuDataResponse",
+      "required": [
+        "has_anonymous",
+        "has_authority",
+        "collection",
+        "publish",
+        "audit"
+      ]
+    },
+    "GetGoodArticleRecommendRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "category_uid": {
+          "type": "string"
+        },
+        "sorted": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "GetGoodArticleRecommendRequest",
+      "required": [
+        "sorted",
+        "offset",
+        "limit"
+      ]
+    },
+    "GetGoodArticleRecommendResponse": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GoodArticleRecommend"
+          }
+        }
+      },
+      "title": "GetGoodArticleRecommendResponse",
+      "required": [
+        "total",
+        "data"
+      ]
+    },
+    "GetGoodArticleRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "article_uid": {
+          "type": "string"
+        }
+      },
+      "title": "GetGoodArticleRequest",
+      "required": [
+        "user_uid",
+        "article_uid"
+      ]
+    },
+    "GetGoodArticleResponse": {
+      "type": "object",
+      "properties": {
+        "article_uid": {
+          "type": "string"
+        },
+        "category_uid": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        }
+      },
+      "title": "GetGoodArticleResponse",
+      "required": [
+        "article_uid",
+        "category_uid",
+        "title",
+        "link",
+        "source",
+        "image"
+      ]
+    },
+    "GetGoodArticleSubmitRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        }
+      },
+      "title": "GetGoodArticleSubmitRequest",
+      "required": [
+        "user_uid"
+      ]
+    },
+    "GetGoodArticleSubmitResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GoodArticleRecommend"
+          }
+        }
+      },
+      "title": "GetGoodArticleSubmitResponse",
+      "required": [
+        "data"
+      ]
+    },
+    "GetGoodStationCategoryRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        }
+      },
+      "title": "GetGoodStationCategoryRequest"
+    },
+    "GetGoodStationCategoryResponse": {
+      "type": "object",
+      "properties": {
+        "wait": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "has_authority": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GoodStationCategory"
+          }
+        }
+      },
+      "title": "GetGoodStationCategoryResponse",
+      "required": [
+        "wait",
+        "has_authority",
+        "categories"
+      ]
+    },
+    "GetGoodStationRecommendRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "category_uid": {
+          "type": "string"
+        },
+        "sorted": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "GetGoodStationRecommendRequest",
+      "required": [
+        "sorted",
+        "offset",
+        "limit"
+      ]
+    },
+    "GetGoodStationRecommendResponse": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GoodStationRecommend"
+          }
+        }
+      },
+      "title": "GetGoodStationRecommendResponse",
+      "required": [
+        "total",
+        "data"
+      ]
+    },
+    "GetGoodStationRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "station_uid": {
+          "type": "string"
+        }
+      },
+      "title": "GetGoodStationRequest",
+      "required": [
+        "user_uid",
+        "station_uid"
+      ]
+    },
+    "GetGoodStationResponse": {
+      "type": "object",
+      "properties": {
+        "station_uid": {
+          "type": "string"
+        },
+        "category_uid": {
+          "type": "string"
+        },
+        "site_name": {
+          "type": "string",
+          "description": " 网站名称"
+        },
+        "link": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "GetGoodStationResponse",
+      "required": [
+        "station_uid",
+        "category_uid",
+        "site_name",
+        "link"
+      ]
+    },
+    "GetHotGoodArticleRequest": {
+      "type": "object",
+      "title": "GetHotGoodArticleRequest"
+    },
+    "GetHotGoodArticleResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/HotGoodArticle"
+          }
+        }
+      },
+      "title": "GetHotGoodArticleResponse",
+      "required": [
+        "data"
+      ]
+    },
+    "GetMessagesRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "msg_type": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 0 未读消息，1 全部消息"
+        }
+      },
+      "title": "GetMessagesRequest",
+      "required": [
+        "user_uid",
+        "msg_type"
+      ]
+    },
+    "GetMessagesResponse": {
+      "type": "object",
+      "properties": {
+        "unread": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 未读数量"
+        },
+        "user_messages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserMessage"
+          }
+        }
+      },
+      "title": "GetMessagesResponse",
+      "required": [
+        "unread",
+        "user_messages"
+      ]
+    },
+    "GetPersonalAccountInfoRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        }
+      },
+      "title": "GetPersonalAccountInfoRequest",
+      "required": [
+        "user_uid"
+      ]
+    },
+    "GetPersonalAccountInfoResponse": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "user_name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "industry": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "has_membership": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "has_entire": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": " 是否完成了基本信息"
+        }
+      },
+      "title": "GetPersonalAccountInfoResponse",
+      "required": [
+        "user_uid",
+        "user_name",
+        "email",
+        "industry",
+        "image",
+        "description",
+        "has_membership",
+        "has_entire"
+      ]
+    },
+    "GetPersonalFoldersRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        }
+      },
+      "title": "GetPersonalFoldersRequest",
+      "required": [
+        "user_uid"
+      ]
+    },
+    "GetPersonalFoldersResponse": {
+      "type": "object",
+      "properties": {
+        "folders": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PersonalFolder"
+          }
+        }
+      },
+      "title": "GetPersonalFoldersResponse",
+      "required": [
+        "folders"
+      ]
+    },
+    "GetPersonalInviteRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        }
+      },
+      "title": "GetPersonalInviteRequest",
+      "required": [
+        "user_uid"
+      ]
+    },
+    "GetPersonalInviteResponse": {
+      "type": "object",
+      "properties": {
+        "invite_url": {
+          "type": "string",
+          "description": " 邀请链接"
+        },
+        "earned": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 挣得文件数"
+        },
+        "invited": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 邀请人数"
+        },
+        "achievements": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Achievement"
+          },
+          "description": " 成就, 最多20个，时间倒序"
+        }
+      },
+      "title": "GetPersonalInviteResponse",
+      "required": [
+        "invite_url",
+        "earned",
+        "invited",
+        "achievements"
+      ]
+    },
+    "GetPersonalTeamsRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        }
+      },
+      "title": "GetPersonalTeamsRequest",
+      "required": [
+        "user_uid"
+      ]
+    },
+    "GetPersonalTeamsResponse": {
+      "type": "object",
+      "properties": {
+        "personal_teams": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PersonalTeam"
+          }
+        }
+      },
+      "title": "GetPersonalTeamsResponse",
+      "required": [
+        "personal_teams"
+      ]
+    },
+    "GetPersonalWebLinkInfoRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        }
+      },
+      "title": "GetPersonalWebLinkInfoRequest",
+      "required": [
+        "user_uid"
+      ]
+    },
+    "GetPersonalWebLinkInfoResponse": {
+      "type": "object",
+      "properties": {
+        "used_quantity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total_quantity": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "percent": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "has_limit": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      },
+      "title": "GetPersonalWebLinkInfoResponse",
+      "required": [
+        "used_quantity",
+        "total_quantity",
+        "percent",
+        "has_limit"
+      ]
+    },
+    "GetPublicCommunityCategoryRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        }
+      },
+      "title": "GetPublicCommunityCategoryRequest"
+    },
+    "GetPublicCommunityCategoryResponse": {
+      "type": "object",
+      "properties": {
+        "wait": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "has_admin": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PublicCommunityCategory"
+          }
+        }
+      },
+      "title": "GetPublicCommunityCategoryResponse",
+      "required": [
+        "wait",
+        "has_admin",
+        "categories"
+      ]
+    },
+    "GetPublicCommunityDetailRequest": {
+      "type": "object",
+      "properties": {
+        "community_uid": {
+          "type": "string"
+        },
+        "user_uid": {
+          "type": "string"
+        }
+      },
+      "title": "GetPublicCommunityDetailRequest",
+      "required": [
+        "community_uid"
+      ]
+    },
+    "GetPublicCommunityDetailResponse": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "html_desc": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "praise": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "has_praise": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "used": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "view": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "star": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "has_star": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "user_uid": {
+          "type": "string",
+          "description": " 用户uid"
+        },
+        "user_image": {
+          "type": "string",
+          "description": " 用户图片"
+        },
+        "user_name": {
+          "type": "string"
+        },
+        "fans": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "open": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "has_self": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "has_follow": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": " 是否关注"
+        }
+      },
+      "title": "GetPublicCommunityDetailResponse",
+      "required": [
+        "uid",
+        "title",
+        "description",
+        "html_desc",
+        "image",
+        "tags",
+        "praise",
+        "has_praise",
+        "used",
+        "view",
+        "star",
+        "has_star",
+        "user_uid",
+        "user_image",
+        "user_name",
+        "fans",
+        "open",
+        "has_self",
+        "has_follow"
+      ]
+    },
+    "GetPublicCommunityRequest": {
+      "type": "object",
+      "properties": {
+        "category_uid": {
+          "type": "string"
+        },
+        "sorted": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "GetPublicCommunityRequest",
+      "required": [
+        "sorted",
+        "offset",
+        "limit"
+      ]
+    },
+    "GetPublicCommunityResponse": {
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PublicCommunity"
+          }
+        }
+      },
+      "title": "GetPublicCommunityResponse",
+      "required": [
+        "total",
+        "data"
+      ]
+    },
+    "GetRecentPersonalWebLinkRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        }
+      },
+      "title": "GetRecentPersonalWebLinkRequest",
+      "required": [
+        "user_uid"
+      ]
+    },
+    "GetRecentPersonalWebLinkResponse": {
+      "type": "object",
+      "properties": {
+        "web_links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RecentWebLink"
+          }
+        }
+      },
+      "title": "GetRecentPersonalWebLinkResponse",
+      "required": [
+        "web_links"
+      ]
+    },
+    "GetRecyclingPersonalWebLinkRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        }
+      },
+      "title": "GetRecyclingPersonalWebLinkRequest",
+      "required": [
+        "user_uid"
+      ]
+    },
+    "GetRecyclingPersonalWebLinkResponse": {
+      "type": "object",
+      "properties": {
+        "web_links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PersonalWebLink"
+          }
+        }
+      },
+      "title": "GetRecyclingPersonalWebLinkResponse",
+      "required": [
+        "web_links"
+      ]
+    },
+    "GetSelfPublicCommunityRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        }
+      },
+      "title": "GetSelfPublicCommunityRequest",
+      "required": [
+        "user_uid",
+        "category"
+      ]
+    },
+    "GetSelfPublicCommunityResponse": {
+      "type": "object",
+      "properties": {
+        "has_admin": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PublicCommunity"
+          }
+        }
+      },
+      "title": "GetSelfPublicCommunityResponse",
+      "required": [
+        "has_admin",
+        "data"
+      ]
+    },
+    "GetShareAllPersonnelRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "share_uid": {
+          "type": "string"
+        }
+      },
+      "title": "GetShareAllPersonnelRequest",
+      "required": [
+        "user_uid",
+        "share_uid"
+      ]
+    },
+    "GetShareAllPersonnelResponse": {
+      "type": "object",
+      "properties": {
+        "has_owner": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": " 是否是创建者"
+        },
+        "share_personnel": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SharePersonnel"
+          }
+        }
+      },
+      "title": "GetShareAllPersonnelResponse",
+      "required": [
+        "has_owner",
+        "share_personnel"
+      ]
+    },
+    "GetSharePersonalFolderRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        }
+      },
+      "title": "GetSharePersonalFolderRequest",
+      "required": [
+        "user_uid"
+      ]
+    },
+    "GetSharePersonalFolderResponse": {
+      "type": "object",
+      "properties": {
+        "folders": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ShareFolder"
+          }
+        }
+      },
+      "title": "GetSharePersonalFolderResponse",
+      "required": [
+        "folders"
+      ]
+    },
+    "GetUpgradeRechargesRequest": {
+      "type": "object",
+      "title": "GetUpgradeRechargesRequest"
+    },
+    "GetUpgradeRechargesResponse": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string"
+        },
+        "upgrade_recharges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UpgradeRecharges"
+          }
+        }
+      },
+      "title": "GetUpgradeRechargesResponse",
+      "required": [
+        "amount",
+        "upgrade_recharges"
+      ]
+    },
+    "GetWorkspaceContentRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "folder_uid": {
+          "type": "string"
+        }
+      },
+      "title": "GetWorkspaceContentRequest",
+      "required": [
+        "user_uid",
+        "folder_uid"
+      ]
+    },
+    "GetWorkspaceContentResponse": {
+      "type": "object",
+      "properties": {
+        "authority": {
+          "type": "string"
+        },
+        "share_uid": {
+          "type": "string"
+        },
+        "folder_uid": {
+          "type": "string"
+        },
+        "folder_number": {
+          "type": "string"
+        },
+        "folder_name": {
+          "type": "string"
+        },
+        "active_workspace_uids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "personal_workspaces": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PersonalWorkspace"
+          }
+        }
+      },
+      "title": "GetWorkspaceContentResponse",
+      "required": [
+        "authority",
+        "share_uid",
+        "folder_uid",
+        "folder_number",
+        "folder_name",
+        "active_workspace_uids",
+        "personal_workspaces"
+      ]
+    },
+    "GoodArticleCategory": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "GoodArticleCategory",
+      "required": [
+        "uid",
+        "name"
+      ]
+    },
+    "GoodArticleCollectionRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "article_uid": {
+          "type": "string"
+        },
+        "folder_uid": {
+          "type": "string"
+        }
+      },
+      "title": "GoodArticleCollectionRequest",
+      "required": [
+        "user_uid",
+        "article_uid",
+        "folder_uid"
+      ]
+    },
+    "GoodArticleCollectionResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "GoodArticleCollectionResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "GoodArticleRecommend": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string"
+        },
+        "star": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "has_star": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "title": "GoodArticleRecommend",
+      "required": [
+        "uid",
+        "title",
+        "image",
+        "description",
+        "source",
+        "link",
+        "star",
+        "has_star",
+        "status"
+      ]
+    },
+    "GoodStationCategory": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "GoodStationCategory",
+      "required": [
+        "uid",
+        "name"
+      ]
+    },
+    "GoodStationRecommend": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "icon": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string"
+        },
+        "praise": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "has_praise": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "star": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "has_star": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "view": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "category_name": {
+          "type": "string"
+        }
+      },
+      "title": "GoodStationRecommend",
+      "required": [
+        "uid",
+        "title",
+        "description",
+        "image",
+        "tags",
+        "icon",
+        "source",
+        "link",
+        "praise",
+        "has_praise",
+        "star",
+        "has_star",
+        "view",
+        "category_name"
+      ]
+    },
+    "GoodStationStarRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "station_uid": {
+          "type": "string"
+        },
+        "folder_uid": {
+          "type": "string"
+        }
+      },
+      "title": "GoodStationStarRequest",
+      "required": [
+        "user_uid",
+        "station_uid",
+        "folder_uid"
+      ]
+    },
+    "GoodStationStarResponse": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string"
+        },
+        "praise": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "has_praise": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "star": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "has_star": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "view": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "GoodStationStarResponse",
+      "required": [
+        "uid",
+        "praise",
+        "has_praise",
+        "star",
+        "has_star",
+        "view"
+      ]
+    },
+    "HelloRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "HelloRequest",
+      "required": [
+        "name"
+      ]
+    },
+    "HelloResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "HelloResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "HotGoodArticle": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string"
+        }
+      },
+      "title": "HotGoodArticle",
+      "required": [
+        "uid",
+        "title",
+        "link"
+      ]
+    },
+    "JoinShareLinkRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "share_uid": {
+          "type": "string"
+        }
+      },
+      "title": "JoinShareLinkRequest",
+      "required": [
+        "user_uid",
+        "share_uid"
+      ]
+    },
+    "JoinShareLinkResponse": {
+      "type": "object",
+      "properties": {
+        "has_share": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": " 是否用于分享，false表示自己访问自己的链接"
+        },
+        "folder_uid": {
+          "type": "string"
+        },
+        "folder_number": {
+          "type": "string"
+        }
+      },
+      "title": "JoinShareLinkResponse",
+      "required": [
+        "has_share",
+        "folder_uid",
+        "folder_number"
+      ]
+    },
+    "PersonalFolder": {
+      "type": "object",
+      "properties": {
+        "folder_uid": {
+          "type": "string"
+        },
+        "folder_number": {
+          "type": "string"
+        },
+        "folder_name": {
+          "type": "string"
+        }
+      },
+      "title": "PersonalFolder",
+      "required": [
+        "folder_uid",
+        "folder_number",
+        "folder_name"
+      ]
+    },
+    "PersonalTeam": {
+      "type": "object",
+      "properties": {
+        "team_uid": {
+          "type": "string"
+        },
+        "team_name": {
+          "type": "string"
+        },
+        "expired_at": {
+          "type": "string"
+        }
+      },
+      "title": "PersonalTeam",
+      "required": [
+        "team_uid",
+        "team_name",
+        "expired_at"
+      ]
+    },
+    "PersonalWebLink": {
+      "type": "object",
+      "properties": {
+        "link_uid": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string"
+        },
+        "file_type": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "sequence": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "PersonalWebLink",
+      "required": [
+        "link_uid",
+        "title",
+        "image",
+        "link",
+        "file_type",
+        "description",
+        "sequence"
+      ]
+    },
+    "PersonalWorkspace": {
+      "type": "object",
+      "properties": {
+        "is_open": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "workspace_uid": {
+          "type": "string"
+        },
+        "workspace_name": {
+          "type": "string"
+        },
+        "web_links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PersonalWebLink"
+          }
+        }
+      },
+      "title": "PersonalWorkspace",
+      "required": [
+        "is_open",
+        "workspace_uid",
+        "workspace_name",
+        "web_links"
+      ]
+    },
+    "PublicCommunity": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "praise": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "used": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "view": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "user_uid": {
+          "type": "string",
+          "description": " 用户uid"
+        },
+        "user_image": {
+          "type": "string",
+          "description": " 用户图片"
+        },
+        "user_name": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "title": "PublicCommunity",
+      "required": [
+        "uid",
+        "title",
+        "description",
+        "image",
+        "praise",
+        "used",
+        "view",
+        "user_uid",
+        "user_image",
+        "user_name",
+        "status"
+      ]
+    },
+    "PublicCommunityCategory": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "PublicCommunityCategory",
+      "required": [
+        "uid",
+        "name"
+      ]
+    },
+    "ReadAllMessageRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        }
+      },
+      "title": "ReadAllMessageRequest",
+      "required": [
+        "user_uid"
+      ]
+    },
+    "ReadAllMessageResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "ReadAllMessageResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "ReadMessageRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "message_uid": {
+          "type": "string"
+        }
+      },
+      "title": "ReadMessageRequest",
+      "required": [
+        "user_uid",
+        "message_uid"
+      ]
+    },
+    "ReadMessageResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "ReadMessageResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "RecentWebLink": {
+      "type": "object",
+      "properties": {
+        "link_uid": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string"
+        },
+        "file_type": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      },
+      "title": "RecentWebLink",
+      "required": [
+        "link_uid",
+        "title",
+        "image",
+        "link",
+        "file_type",
+        "description",
+        "updated_at"
+      ]
+    },
+    "RestoreDeletePersonalWebLinkRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "link_uid": {
+          "type": "string"
+        }
+      },
+      "title": "RestoreDeletePersonalWebLinkRequest",
+      "required": [
+        "user_uid",
+        "link_uid"
+      ]
+    },
+    "RestoreDeletePersonalWebLinkResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "RestoreDeletePersonalWebLinkResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "SearchWebLink": {
+      "type": "object",
+      "properties": {
+        "folder_uid": {
+          "type": "string"
+        },
+        "folder_number": {
+          "type": "string"
+        },
+        "link_uid": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "title": "SearchWebLink",
+      "required": [
+        "folder_uid",
+        "folder_number",
+        "link_uid",
+        "title",
+        "image",
+        "link",
+        "description"
+      ]
+    },
+    "SearchWebLinksRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "keyword": {
+          "type": "string"
+        },
+        "type": {
+          "type": "integer",
+          "format": "int32",
+          "description": " 0 为全部, 1 为我的, 2 为协作"
+        }
+      },
+      "title": "SearchWebLinksRequest",
+      "required": [
+        "user_uid",
+        "type"
+      ]
+    },
+    "SearchWebLinksResponse": {
+      "type": "object",
+      "properties": {
+        "search_web_links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SearchWebLink"
+          }
+        }
+      },
+      "title": "SearchWebLinksResponse",
+      "required": [
+        "search_web_links"
+      ]
+    },
+    "ShareFolder": {
+      "type": "object",
+      "properties": {
+        "share_uid": {
+          "type": "string"
+        },
+        "has_owner": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "authority": {
+          "type": "string"
+        },
+        "folder_uid": {
+          "type": "string"
+        },
+        "folder_number": {
+          "type": "string"
+        },
+        "folder_name": {
+          "type": "string"
+        }
+      },
+      "title": "ShareFolder",
+      "required": [
+        "share_uid",
+        "has_owner",
+        "authority",
+        "folder_uid",
+        "folder_number",
+        "folder_name"
+      ]
+    },
+    "ShareFolderLinkRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "folder_uid": {
+          "type": "string"
+        },
+        "authority": {
+          "type": "string"
+        },
+        "expired_day": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "ShareFolderLinkRequest",
+      "required": [
+        "user_uid",
+        "folder_uid",
+        "authority",
+        "expired_day"
+      ]
+    },
+    "ShareFolderLinkResponse": {
+      "type": "object",
+      "properties": {
+        "share_uid": {
+          "type": "string"
+        },
+        "share_link": {
+          "type": "string"
+        },
+        "authority": {
+          "type": "string"
+        },
+        "expired_day": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "ShareFolderLinkResponse",
+      "required": [
+        "share_uid",
+        "share_link",
+        "authority",
+        "expired_day"
+      ]
+    },
+    "ShareFriendFolderRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "share_uid": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "authority": {
+          "type": "string"
+        }
+      },
+      "title": "ShareFriendFolderRequest",
+      "required": [
+        "user_uid",
+        "share_uid",
+        "email",
+        "authority"
+      ]
+    },
+    "ShareFriendFolderResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "ShareFriendFolderResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "SharePersonalFolderRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "folder_uid": {
+          "type": "string"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "SharePersonalFolderRequest",
+      "required": [
+        "user_uid",
+        "folder_uid",
+        "offset",
+        "limit"
+      ]
+    },
+    "SharePersonalFolderResponse": {
+      "type": "object",
+      "properties": {
+        "folder_uid": {
+          "type": "string"
+        },
+        "share_uid": {
+          "type": "string"
+        },
+        "share_link": {
+          "type": "string"
+        },
+        "authority": {
+          "type": "string"
+        },
+        "expired_day": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "has_owner": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": " 是否是创建者"
+        },
+        "share_num": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "share_personnel": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SharePersonnel"
+          }
+        }
+      },
+      "title": "SharePersonalFolderResponse",
+      "required": [
+        "folder_uid",
+        "share_uid",
+        "share_link",
+        "authority",
+        "expired_day",
+        "has_owner",
+        "share_num",
+        "share_personnel"
+      ]
+    },
+    "SharePersonnel": {
+      "type": "object",
+      "properties": {
+        "coll_uid": {
+          "type": "string"
+        },
+        "user_uid": {
+          "type": "string"
+        },
+        "user_name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "authority": {
+          "type": "string"
+        },
+        "has_membership": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "image": {
+          "type": "string"
+        },
+        "has_self": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "sequence": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "SharePersonnel",
+      "required": [
+        "coll_uid",
+        "user_uid",
+        "user_name",
+        "email",
+        "authority",
+        "has_membership",
+        "image",
+        "has_self",
+        "sequence"
+      ]
+    },
+    "TimeResp": {
+      "type": "object",
+      "properties": {
+        "now": {
+          "type": "string"
+        }
+      },
+      "title": "TimeResp",
+      "required": [
+        "now"
+      ]
+    },
+    "UpdateAuditGoodStationRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "station_uid": {
+          "type": "string"
+        },
+        "status": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      },
+      "title": "UpdateAuditGoodStationRequest",
+      "required": [
+        "user_uid",
+        "station_uid",
+        "status"
+      ]
+    },
+    "UpdateAuditGoodStationResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateAuditGoodStationResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "UpdateAuditPublicCommunityRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "community_uid": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "description": " 1 通过, -1 拒绝"
+        }
+      },
+      "title": "UpdateAuditPublicCommunityRequest",
+      "required": [
+        "user_uid",
+        "community_uid",
+        "status"
+      ]
+    },
+    "UpdateAuditPublicCommunityResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateAuditPublicCommunityResponse",
+      "required": [
+        "status"
+      ]
+    },
+    "UpdateGoodArticleAuditRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "article_uid": {
+          "type": "string"
+        },
+        "status": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      },
+      "title": "UpdateGoodArticleAuditRequest",
+      "required": [
+        "user_uid",
+        "article_uid",
+        "status"
+      ]
+    },
+    "UpdateGoodArticleAuditResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateGoodArticleAuditResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "UpdateGoodArticleMetaRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "article_uid": {
+          "type": "string"
+        },
+        "meta_type": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "UpdateGoodArticleMetaRequest",
+      "required": [
+        "user_uid",
+        "article_uid",
+        "meta_type"
+      ]
+    },
+    "UpdateGoodArticleMetaResponse": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string"
+        },
+        "has_star": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      },
+      "title": "UpdateGoodArticleMetaResponse",
+      "required": [
+        "uid",
+        "has_star"
+      ]
+    },
+    "UpdateGoodArticleRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "article_uid": {
+          "type": "string"
+        },
+        "category_uid": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateGoodArticleRequest",
+      "required": [
+        "user_uid",
+        "article_uid",
+        "category_uid",
+        "title",
+        "link",
+        "source"
+      ]
+    },
+    "UpdateGoodArticleResponse": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string"
+        },
+        "category_uid": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateGoodArticleResponse",
+      "required": [
+        "uid",
+        "category_uid",
+        "title",
+        "link",
+        "source",
+        "image",
+        "status"
+      ]
+    },
+    "UpdateGoodStationMetaRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "station_uid": {
+          "type": "string"
+        },
+        "meta_type": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "UpdateGoodStationMetaRequest",
+      "required": [
+        "user_uid",
+        "station_uid",
+        "meta_type"
+      ]
+    },
+    "UpdateGoodStationMetaResponse": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string"
+        },
+        "praise": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "has_praise": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "star": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "has_star": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "view": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "UpdateGoodStationMetaResponse",
+      "required": [
+        "uid",
+        "praise",
+        "has_praise",
+        "star",
+        "has_star",
+        "view"
+      ]
+    },
+    "UpdateGoodStationRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "station_uid": {
+          "type": "string"
+        },
+        "category_uid": {
+          "type": "string"
+        },
+        "site_name": {
+          "type": "string",
+          "description": " 网站名称"
+        },
+        "link": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "UpdateGoodStationRequest",
+      "required": [
+        "user_uid",
+        "station_uid",
+        "category_uid",
+        "site_name",
+        "link"
+      ]
+    },
+    "UpdateGoodStationResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateGoodStationResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "UpdateManageSharePersonnelRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "share_uid": {
+          "type": "string"
+        },
+        "other_user_uid": {
+          "type": "string"
+        },
+        "authority": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateManageSharePersonnelRequest",
+      "required": [
+        "user_uid",
+        "share_uid",
+        "other_user_uid",
+        "authority"
+      ]
+    },
+    "UpdateManageSharePersonnelResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateManageSharePersonnelResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "UpdatePersonalAccountImageRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "file": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/byte"
+          }
+        },
+        "filename": {
+          "type": "string"
+        }
+      },
+      "title": "UpdatePersonalAccountImageRequest",
+      "required": [
+        "user_uid",
+        "file",
+        "filename"
+      ]
+    },
+    "UpdatePersonalAccountImageResponse": {
+      "type": "object",
+      "properties": {
+        "image_url": {
+          "type": "string"
+        }
+      },
+      "title": "UpdatePersonalAccountImageResponse",
+      "required": [
+        "image_url"
+      ]
+    },
+    "UpdatePersonalAccountInfoRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "user_name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "industry": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "title": "UpdatePersonalAccountInfoRequest",
+      "required": [
+        "user_uid"
+      ]
+    },
+    "UpdatePersonalAccountInfoResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "UpdatePersonalAccountInfoResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "UpdatePersonalFolderRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "folder_uid": {
+          "type": "string"
+        },
+        "folder_name": {
+          "type": "string"
+        }
+      },
+      "title": "UpdatePersonalFolderRequest",
+      "required": [
+        "user_uid",
+        "folder_uid",
+        "folder_name"
+      ]
+    },
+    "UpdatePersonalFolderResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "UpdatePersonalFolderResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "UpdatePersonalWebLinkRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "folder_uid": {
+          "type": "string"
+        },
+        "workspace_uid": {
+          "type": "string"
+        },
+        "link_uid": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "title": "UpdatePersonalWebLinkRequest",
+      "required": [
+        "user_uid",
+        "folder_uid",
+        "workspace_uid",
+        "link_uid",
+        "title",
+        "description"
+      ]
+    },
+    "UpdatePersonalWebLinkResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "UpdatePersonalWebLinkResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "UpdatePublicCommunityImageRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "folder_uid": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        }
+      },
+      "title": "UpdatePublicCommunityImageRequest",
+      "required": [
+        "user_uid",
+        "folder_uid",
+        "image"
+      ]
+    },
+    "UpdatePublicCommunityImageResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "UpdatePublicCommunityImageResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "UpdatePublicCommunityMetaRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "community_uid": {
+          "type": "string"
+        },
+        "meta_type": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "UpdatePublicCommunityMetaRequest",
+      "required": [
+        "user_uid",
+        "community_uid",
+        "meta_type"
+      ]
+    },
+    "UpdatePublicCommunityMetaResponse": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string"
+        },
+        "folder_number": {
+          "type": "string"
+        },
+        "praise": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "has_praise": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "star": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "has_star": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "view": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "used": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "has_used": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      },
+      "title": "UpdatePublicCommunityMetaResponse",
+      "required": [
+        "uid",
+        "folder_number",
+        "praise",
+        "has_praise",
+        "star",
+        "has_star",
+        "view",
+        "used",
+        "has_used"
+      ]
+    },
+    "UpdateShareLinkRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "folder_uid": {
+          "type": "string"
+        },
+        "share_uid": {
+          "type": "string"
+        },
+        "authority": {
+          "type": "string"
+        },
+        "expired_day": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "UpdateShareLinkRequest",
+      "required": [
+        "user_uid",
+        "folder_uid",
+        "share_uid",
+        "authority",
+        "expired_day"
+      ]
+    },
+    "UpdateShareLinkResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateShareLinkResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "UpdateSharePersonalFolderRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "share_uid": {
+          "type": "string"
+        },
+        "folder_name": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateSharePersonalFolderRequest",
+      "required": [
+        "user_uid",
+        "share_uid",
+        "folder_name"
+      ]
+    },
+    "UpdateSharePersonalFolderResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateSharePersonalFolderResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "UpdateSharePersonnelRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "folder_uid": {
+          "type": "string"
+        },
+        "share_uid": {
+          "type": "string"
+        },
+        "coll_uid": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "description": " 操作类型：0 为可查看，1 为可编辑，3 为删除"
+        }
+      },
+      "title": "UpdateSharePersonnelRequest",
+      "required": [
+        "user_uid",
+        "folder_uid",
+        "share_uid",
+        "coll_uid",
+        "type"
+      ]
+    },
+    "UpdateSharePersonnelResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateSharePersonnelResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "UpdateWorkspaceRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "folder_uid": {
+          "type": "string"
+        },
+        "workspace_uid": {
+          "type": "string"
+        },
+        "workspace_name": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateWorkspaceRequest",
+      "required": [
+        "user_uid",
+        "folder_uid",
+        "workspace_uid",
+        "workspace_name"
+      ]
+    },
+    "UpdateWorkspaceResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateWorkspaceResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "UpdateWorkspaceSwitchRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "folder_uid": {
+          "type": "string"
+        },
+        "active_workspace_uids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "UpdateWorkspaceSwitchRequest",
+      "required": [
+        "user_uid",
+        "folder_uid",
+        "active_workspace_uids"
+      ]
+    },
+    "UpdateWorkspaceSwitchResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateWorkspaceSwitchResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "UpdateWorkspaceWebLinksRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "folder_uid": {
+          "type": "string"
+        },
+        "workspace_uid": {
+          "type": "string"
+        },
+        "old_workspace_uid": {
+          "type": "string"
+        },
+        "web_links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PersonalWebLink"
+          }
+        }
+      },
+      "title": "UpdateWorkspaceWebLinksRequest",
+      "required": [
+        "user_uid",
+        "folder_uid",
+        "workspace_uid",
+        "old_workspace_uid",
+        "web_links"
+      ]
+    },
+    "UpdateWorkspaceWebLinksResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateWorkspaceWebLinksResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "UpgradeRecharges": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "origin_amount": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "string"
+        },
+        "descriptions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "theme_color": {
+          "type": "string"
+        }
+      },
+      "title": "UpgradeRecharges",
+      "required": [
+        "uid",
+        "title",
+        "origin_amount",
+        "amount",
+        "descriptions",
+        "theme_color"
+      ]
+    },
+    "UploadGoodArticleImageRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "file": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/byte"
+          }
+        },
+        "filename": {
+          "type": "string"
+        }
+      },
+      "title": "UploadGoodArticleImageRequest",
+      "required": [
+        "user_uid",
+        "file",
+        "filename"
+      ]
+    },
+    "UploadGoodArticleImageResponse": {
+      "type": "object",
+      "properties": {
+        "image_url": {
+          "type": "string"
+        }
+      },
+      "title": "UploadGoodArticleImageResponse",
+      "required": [
+        "image_url"
+      ]
+    },
+    "UploadStationImageRequest": {
+      "type": "object",
+      "properties": {
+        "user_uid": {
+          "type": "string"
+        },
+        "file": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/byte"
+          }
+        },
+        "filename": {
+          "type": "string"
+        }
+      },
+      "title": "UploadStationImageRequest",
+      "required": [
+        "user_uid",
+        "file",
+        "filename"
+      ]
+    },
+    "UploadStationImageResponse": {
+      "type": "object",
+      "properties": {
+        "image_url": {
+          "type": "string"
+        }
+      },
+      "title": "UploadStationImageResponse",
+      "required": [
+        "image_url"
+      ]
+    },
+    "UserMessage": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string"
+        },
+        "promoter_name": {
+          "type": "string",
+          "description": " 发起人名称"
+        },
+        "promoter_image": {
+          "type": "string",
+          "description": " 发起人头像"
+        },
+        "description": {
+          "type": "string"
+        },
+        "has_read": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "created_at": {
+          "type": "string"
+        }
+      },
+      "title": "UserMessage",
+      "required": [
+        "uid",
+        "promoter_name",
+        "promoter_image",
+        "description",
+        "has_read",
+        "created_at"
+      ]
+    },
+    "ViewGoodArticleRequest": {
+      "type": "object",
+      "properties": {
+        "article_uid": {
+          "type": "string"
+        }
+      },
+      "title": "ViewGoodArticleRequest",
+      "required": [
+        "article_uid"
+      ]
+    },
+    "ViewGoodArticleResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "ViewGoodArticleResponse",
+      "required": [
+        "message"
+      ]
+    },
+    "WechatMessageCallbackRequest": {
+      "type": "object",
+      "properties": {
+        "ToUserName": {
+          "type": "string"
+        },
+        "FromUserName": {
+          "type": "string"
+        },
+        "CreateTime": {
+          "type": "string"
+        },
+        "MsgType": {
+          "type": "string"
+        },
+        "Content": {
+          "type": "string"
+        },
+        "Event": {
+          "type": "string"
+        },
+        "EventKey": {
+          "type": "string"
+        }
+      },
+      "title": "WechatMessageCallbackRequest",
+      "required": [
+        "ToUserName",
+        "FromUserName",
+        "CreateTime",
+        "MsgType",
+        "Content",
+        "Event",
+        "EventKey"
+      ]
+    },
+    "WechatMessageCallbackResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "title": "WechatMessageCallbackResponse",
+      "required": [
+        "message"
+      ]
+    }
+  },
+  "securityDefinitions": {
+    "apiKey": {
+      "type": "apiKey",
+      "description": "Enter JWT Bearer token **_only_**",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "apiKey": []
+    }
+  ]
+}

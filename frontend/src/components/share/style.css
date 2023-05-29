@@ -1,0 +1,114 @@
+/* 卡片本身样式 */
+.share-folder .ant-modal-content {
+    border-radius: 6px;
+}
+
+/* 卡片表单字体 */
+.share-folder .ant-form-item-label > label {
+    color: #6c7d8f;
+    font-size: 13px;
+}
+
+/* 卡片表单输入框 */
+.share-folder .ant-input {
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.share-folder .ant-btn {
+    font-size: 13px;
+}
+
+.share-folder .ant-modal-confirm-btns .ant-btn {
+    display: none;
+}
+
+.share-folder .ant-radio-wrapper {
+    color: #212930;
+}
+
+.share-folder .ant-form label {
+    font-size: 13px;
+}
+
+.share-folder .ant-radio .ant-radio-inner {
+    width: 14px;
+    height: 14px;
+}
+
+.share-folder .ant-modal-body {
+    padding-top: 14px;
+    padding-bottom: 20px;
+}
+
+.share-folder .share-email-input {
+    margin-top: 15px;
+    background: #f3f5f9;
+    border-radius: 4px;
+    border: 1px solid transparent;
+}
+
+.share-folder .ant-input-affix-wrapper-focused {
+    border: 1px solid #067bef;
+    box-shadow: none;
+}
+
+.share-email-input .ant-input {
+    background: #f3f5f9;
+}
+
+.share-number {
+    margin-top: 16px;
+    font-size: 13px;
+    color: #6c7d8f;
+}
+
+.share-user-list {
+    margin-top: 10px;
+    height: 290px;
+    overflow: auto;
+}
+
+.share-user-list .ant-list-item {
+    padding: 2px 8px;
+    border-radius: 6px;
+    margin: 5px 0;
+}
+
+.share-user-list .ant-list-item-meta {
+    align-items: center;
+    justify-content: center;
+}
+
+.share-user-list .ant-list-item-meta-title {
+    font-size: 13px;
+}
+
+.share-user-list .ant-list-item-meta-description {
+    font-size: 13px;
+}
+
+.share-edit-dropdown .ant-dropdown-menu {
+    border-radius: 6px;
+}
+
+.share-edit-dropdown .ant-dropdown-menu-title-content {
+    opacity: 0.9;
+    font-size: 13px;
+}
+
+.share-user-list .ant-space-item {
+    font-size: 13px;
+}
+
+.hidden-opacity {
+    opacity: 0;
+}
+
+.dropdown-fade {
+    opacity: 0.4;
+}
+
+.share-folder .ant-input-affix-wrapper-lg {
+    font-size: 13px;
+}

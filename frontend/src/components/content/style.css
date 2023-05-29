@@ -1,0 +1,319 @@
+.site-layout .site-layout-background {
+    background: #ffffff;
+    padding: 0;
+}
+
+.site-content-background {
+    background: #ffffff;
+    padding: 0;
+    min-height: 80vh;
+}
+
+.resource-title {
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.resource-link {
+    text-align: right;
+}
+
+.workspace {
+    border-radius: 8px;
+}
+
+.workspace > .ant-card-body {
+    padding: 6px 0px;
+}
+
+.ant-list-item-meta-content .ant-list-item-meta-title {
+    margin-bottom: 0;
+}
+
+.file-background {
+    margin-top: 6px;
+    width: 32px;
+    height: 32px;
+    background: url(../../../public/img.png) no-repeat 0 0;
+    background-size: 32px 32px;
+    text-align: center;
+    line-height: 30px;
+}
+
+.ant-list-item:hover {
+    background-color: #f8f8f8;
+}
+
+.workspace > .ant-card-body .ant-list-item {
+    padding: 6px 16px 6px 16px;
+}
+
+.icon-bold {
+    stroke-width: 25;
+    stroke: black;
+    color: black;
+}
+
+.workspace-content .ant-collapse > .ant-collapse-item > .ant-collapse-header {
+    padding-bottom: 0;
+}
+
+.workspace-icon-style {
+    color: rgba(41, 47, 61, .5);
+}
+
+/*.weblink-btn {*/
+/*    opacity: 0;*/
+/*}*/
+
+/*.weblink-list:hover .weblink-btn {*/
+/*    opacity: 1;*/
+/*}*/
+
+
+.edit-weblink .ant-input {
+    border-radius: 4px;
+}
+
+.edit-weblink .ant-form-item {
+    margin-bottom: 18px;
+}
+
+.edit-weblink-title {
+    font-size: 15px;
+}
+
+.ant-popover-message {
+    display: block;
+}
+
+.add-workspace-btn {
+    margin: 60px 16px 80px 16px;
+}
+
+.add-workspace-btn .ant-btn {
+    height: 72px;
+}
+
+.add-workspace-btn .ant-btn {
+    color: #babbc1;
+    background: #f7f8f9;
+    border-color: #dee0e2;
+    border-radius: 5px;
+}
+
+.add-workspace-btn .ant-btn:hover, .add-workspace-btn .ant-btn:focus {
+    color: #272f3b;
+    background: #ffffff;
+    border-color: #dee0e2;
+    border-radius: 5px;
+}
+
+.add-weblink .ant-modal-content {
+    border-radius: 6px;
+}
+
+.add-weblink .ant-form-item-label > label {
+    color: #6c7d8f;
+    font-size: 13px;
+}
+
+.add-weblink .ant-input {
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.add-weblink .ant-btn {
+    height: 30px;
+    font-size: 13px;
+    border-radius: 4px;
+}
+
+.weblink-menu-btn {
+    display: none;
+}
+
+.weblink-list:hover .weblink-menu-btn {
+    display: inline-block;
+}
+
+.weblink-list .ant-btn:focus {
+    display: inline-block;
+}
+
+.workspace-menu-extra .ant-dropdown-menu {
+    border-radius: 6px;
+}
+
+.workspace-menu-extra .ant-dropdown-menu-item, .ant-dropdown-menu-submenu-title {
+    color: #212930;
+    font-size: 13px;
+}
+
+.weblink-list .ant-list-item-meta-description, .weblink-list .ant-list-item-meta-title {
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.add-weblink .ant-modal-confirm-btns {
+    /*display: none;*/
+}
+
+
+/* 卡片本身样式 */
+.add-resource .ant-modal-content {
+    border-radius: 6px;
+}
+
+.add-resource .ant-radio-wrapper {
+    color: #212930;
+}
+
+.add-resource .ant-form label {
+    font-size: 13px;
+}
+
+.add-resource .ant-radio .ant-radio-inner {
+    width: 14px;
+    height: 14px;
+}
+
+.add-resource .ant-modal-body {
+    padding: 0;
+}
+
+.add-resource-sidebar {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    background: #eff0f3;
+    min-height: 360px;
+}
+
+.add-resource-modal-title {
+    padding-top: 16px;
+    padding-left: 24px;
+    margin-bottom: 20px;
+}
+
+.add-resource-sidebar .ant-menu {
+    border-bottom-left-radius: 6px;
+    background: #eff0f3;
+}
+
+.add-resource-sidebar .ant-menu-item {
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: #282f3b;
+}
+
+.add-resource-sidebar .ant-menu-item:not(:last-child) {
+    margin-bottom: 0;
+}
+
+.add-resource-sidebar .ant-menu-item-selected,
+.add-resource-sidebar .ant-menu-item:hover,
+.add-resource-sidebar .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected{
+    color: #282f3b;
+    background-color: #dbdde0;
+}
+
+.add-resource-sidebar .ant-menu-item .ant-menu-title-content {
+    margin-left: 8px;
+}
+
+.add-resource-form {
+    margin-top: 65px;
+    border-radius: 6px;
+}
+
+.add-resource-form .ant-input {
+    border-radius: 6px;
+}
+
+.add-resource-submit-btn {
+    border-radius: 4px;
+}
+
+.add-resource-upload {
+    margin-top: 69px;
+    text-align: center;
+}
+
+.add-resource-upload .ant-upload {
+    margin-top: 16px;
+}
+
+.add-resource-form .ant-form-item {
+    margin-bottom: 14px;
+}
+
+.reader-modal .ant-modal-content {
+    border-radius: 6px;
+}
+
+.reader-modal .ant-modal-body {
+    padding: 0;
+    height: 510px;
+}
+
+.reader-modal .ant-modal-close {
+    top: 5px;
+}
+
+.reader-modal .pg-viewer-wrapper {
+    overflow-y: unset;
+}
+
+.reader-modal .video-container video {
+    max-width: 710px;
+}
+
+
+.public-resource .ant-modal-content {
+    border-radius: 6px;
+}
+
+.public-resource .ant-modal-body {
+    padding-top: 14px;
+}
+
+.public-resource .ant-modal-content {
+    overflow: auto;
+}
+
+.public-resource .ant-card-body {
+    padding: 12px 0;
+}
+
+.public-resource .ant-form-item-label > label {
+    color: #6c7d8f;
+    font-size: 13px;
+}
+
+.public-resource .ant-input {
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.public-resource .ant-btn {
+    height: 30px;
+    font-size: 13px;
+    border-radius: 4px;
+}
+
+.public-resource .ant-form-item-control-input-content > div,
+.public-resource .w-e-toolbar,
+.public-resource .w-e-text-container {
+    border-radius: 4px;
+}
+
+.public-resource .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    border-radius: 4px;
+    font-size: 13px;
+}

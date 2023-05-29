@@ -1,0 +1,98 @@
+syntax = "v1"
+
+info(
+	title: "message api"
+	desc: "消息中心"
+	author: "elza"
+	email: "473225193@qq.com"
+	version: "v1.0"
+)
+
+@server(
+	group: message
+	middleware: JWT
+)
+service binghuang-api {
+	@doc(
+		summary: "查询消息中心"
+	)
+	@handler GetMessages
+	get /customer/:user_uid/personal/message (GetMessagesRequest) returns (GetMessagesResponse)
+	
+	@doc(
+		summary: "标记已读"
+	)
+	@handler ReadMessage
+	put /customer/:user_uid/personal/message/:message_uid (ReadMessageRequest) returns (ReadMessageResponse)
+	
+	@doc(
+		summary: "全部标记已读"
+	)
+	@handler ReadAllMessage
+	put /customer/:user_uid/personal/message (ReadAllMessageRequest) returns (ReadAllMessageResponse)
+	
+	@doc(
+		summary: "删除消息"
+	)
+	@handler DelMessage
+	delete /customer/:user_uid/personal/message/:message_uid (DelMessageRequest) returns (DelMessageResponse)
+	
+	@doc(
+		summary: "删除全部消息"
+	)
+	@handler DelAllMessage
+	delete /customer/:user_uid/personal/message (DelAllMessageRequest) returns (DelAllMessageResponse)
+}
+
+type DelAllMessageRequest {
+	UserUID string `path:"user_uid"`
+}
+
+type DelAllMessageResponse {
+	Message string `json:"message"`
+}
+
+type DelMessageRequest {
+	UserUID    string `path:"user_uid"`
+	MessageUID string `path:"message_uid"`
+}
+
+type DelMessageResponse {
+	Message string `json:"message"`
+}
+
+type ReadAllMessageRequest {
+	UserUID string `path:"user_uid"`
+}
+
+type ReadAllMessageResponse {
+	Message string `json:"message"`
+}
+
+type GetMessagesRequest {
+	UserUID string `path:"user_uid"`
+	MsgType int    `form:"msg_type"` // 0 未读消息，1 全部消息
+}
+
+type GetMessagesResponse {
+	Unread       int            `json:"unread"` // 未读数量
+	UserMessages []*UserMessage `json:"user_messages"`
+}
+
+type UserMessage {
+	UID           string `json:"uid"`
+	PromoterName  string `json:"promoter_name"`  // 发起人名称
+	PromoterImage string `json:"promoter_image"` // 发起人头像
+	Description   string `json:"description"`
+	HasRead       bool   `json:"has_read"`
+	CreatedAt     string `json:"created_at"`
+}
+
+type ReadMessageRequest {
+	UserUID    string `path:"user_uid"`
+	MessageUID string `path:"message_uid"`
+}
+
+type ReadMessageResponse {
+	Message string `json:"message"`
+}

@@ -1,0 +1,177 @@
+syntax = "v1"
+
+info(
+	title: "station api"
+	desc: "好站推荐"
+	author: "elza"
+	email: "473225193@qq.com"
+	version: "v1.0"
+)
+
+@server(
+	group: station
+	middleware: JWT
+)
+service binghuang-api {
+	
+	@doc(
+		summary: "查询好站推荐详情"
+	)
+	@handler GetGoodStation
+	get /customer/:user_uid/station/:station_uid/detail (GetGoodStationRequest) returns (GetGoodStationResponse)
+	
+	@doc(
+		summary: "更新好站推荐详情"
+	)
+	@handler UpdateGoodStation
+	put /customer/:user_uid/station/:station_uid/detail (UpdateGoodStationRequest) returns (UpdateGoodStationResponse)
+	
+	@doc(
+		summary: "添加好站推荐"
+	)
+	@handler AddGoodStationRecommend
+	post /customer/:user_uid/station/recommend (AddGoodStationRecommendRequest) returns (AddGoodStationRecommendResponse)
+	
+	@doc(
+		summary: "上传好站推荐大图"
+	)
+	@handler UploadStationImage
+	put /customer/:user_uid/station/image (UploadStationImageRequest) returns (UploadStationImageResponse)
+	
+	@doc(
+		summary: "更新好站推荐元数据"
+	)
+	@handler UpdateGoodStationMeta
+	put /customer/:user_uid/station/:station_uid/meta (UpdateGoodStationMetaRequest) returns (UpdateGoodStationMetaResponse)
+	
+	@doc(
+		summary: "好站推荐收藏"
+	)
+	@handler GoodStationStar
+	put /customer/:user_uid/station/:station_uid/star (GoodStationStarRequest) returns (GoodStationStarResponse)
+}
+
+type UpdateGoodStationRequest {
+	UserUID     string   `path:"user_uid"`
+	StationUID  string   `path:"station_uid"`
+	CategoryUID string   `json:"category_uid"`
+	SiteName    string   `json:"site_name"` // 网站名称
+	Link        string   `json:"link"`
+	Title       string   `json:"title,optional"`
+	Description string   `json:"description,optional"`
+	Image       string   `json:"image,optional"`
+	Tags        []string `json:"tags,optional"`
+}
+
+type UpdateGoodStationResponse {
+	Message string `json:"message"`
+}
+
+type GetGoodStationRequest {
+	UserUID    string `path:"user_uid"`
+	StationUID string `path:"station_uid"`
+}
+
+type GetGoodStationResponse {
+	StationUID  string   `json:"station_uid"`
+	CategoryUID string   `json:"category_uid"`
+	SiteName    string   `json:"site_name"` // 网站名称
+	Link        string   `json:"link"`
+	Title       string   `json:"title,optional"`
+	Description string   `json:"description,optional"`
+	Image       string   `json:"image,optional"`
+	Tags        []string `json:"tags,optional"`
+}
+
+type GoodStationStarRequest {
+	UserUID    string `path:"user_uid"`
+	StationUID string `path:"station_uid"`
+	FolderUID  string `json:"folder_uid"`
+}
+
+type GoodStationStarResponse {
+	UID       string `json:"uid"`
+	Praise    int    `json:"praise"`
+	HasPraise bool   `json:"has_praise"`
+	Star      int    `json:"star"`
+	HasStar   bool   `json:"has_star"`
+	View      int    `json:"view"`
+}
+
+type UpdateGoodStationMetaRequest {
+	UserUID    string `path:"user_uid"`
+	StationUID string `path:"station_uid"`
+	MetaType   int    `json:"meta_type"`
+}
+
+type UpdateGoodStationMetaResponse {
+	UID       string `json:"uid"`
+	Praise    int    `json:"praise"`
+	HasPraise bool   `json:"has_praise"`
+	Star      int    `json:"star"`
+	HasStar   bool   `json:"has_star"`
+	View      int    `json:"view"`
+}
+
+type UploadStationImageRequest {
+	UserUID  string `path:"user_uid"`
+	File     []byte `json:"file"`
+	Filename string `json:"filename"`
+}
+
+type UploadStationImageResponse {
+	ImageURL string `json:"image_url"`
+}
+
+type AddGoodStationRecommendRequest {
+	UserUID     string   `path:"user_uid"`
+	CategoryUID string   `json:"category_uid"`
+	SiteName    string   `json:"site_name"` // 网站名称
+	Link        string   `json:"link"`
+	Title       string   `json:"title,optional"`
+	Description string   `json:"description,optional"`
+	Image       string   `json:"image,optional"`
+	Tags        []string `json:"tags,optional"`
+}
+
+type AddGoodStationRecommendResponse {
+	Message string `json:"message"`
+}
+
+@server(
+	group: station/audit
+	middleware: JWT
+)
+service binghuang-api {
+	
+	@doc(
+		summary: "查询管理需要审核的好站推荐"
+	)
+	@handler GetAuditGoodStation
+	get /customer/:user_uid/station/audit (GetAuditGoodStationRequest) returns (GetAuditGoodStationResponse)
+	
+	@doc(
+		summary: "审核的好站推荐"
+	)
+	@handler UpdateAuditGoodStation
+	put /customer/:user_uid/station/:station_uid (UpdateAuditGoodStationRequest) returns (UpdateAuditGoodStationResponse)
+	
+}
+
+type UpdateAuditGoodStationRequest {
+	UserUID    string `path:"user_uid"`
+	StationUID string `path:"station_uid"`
+	Status     bool   `json:"status"`
+}
+
+type UpdateAuditGoodStationResponse {
+	Message string `json:"message"`
+}
+
+type GetAuditGoodStationRequest {
+	UserUID string `path:"user_uid"`
+}
+
+type GetAuditGoodStationResponse {
+	Data []*GoodStationRecommend `json:"data"`
+}

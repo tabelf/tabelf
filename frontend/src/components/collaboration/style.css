@@ -1,0 +1,134 @@
+.site-layout .site-layout-background {
+    background: #ffffff;
+    padding: 0;
+}
+
+.site-collaboration-background {
+    background: #ffffff;
+    padding: 0;
+    min-height: 80vh;
+}
+
+.resource-title {
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.resource-link {
+    text-align: right;
+}
+
+.workspace {
+    border-radius: 8px;
+}
+
+.workspace > .ant-card-body {
+    padding: 6px 0px;
+}
+
+.ant-list-item-meta-content .ant-list-item-meta-title {
+    margin-bottom: 0;
+}
+
+.file-background {
+    margin-top: 6px;
+    width: 32px;
+    height: 32px;
+    background: url(../../../public/img.png) no-repeat 0 0;
+    background-size: 32px 32px;
+    text-align: center;
+    line-height: 30px;
+}
+
+.ant-list-item:hover {
+    background-color: #f8f8f8;
+}
+
+.workspace > .ant-card-body .ant-list-item {
+    padding: 6px 16px 6px 16px;
+}
+
+.icon-bold {
+    stroke-width: 25;
+    stroke: black;
+    color: black;
+}
+
+.collaboration-content .ant-collapse > .ant-collapse-item > .ant-collapse-header {
+    padding-bottom: 0;
+}
+
+.workspace-icon-style {
+    color: rgba(41, 47, 61, .5);
+}
+
+.weblink-btn {
+    opacity: 0;
+}
+
+.weblink-list:hover .weblink-btn {
+    opacity: 1;
+}
+
+
+.edit-weblink .ant-input {
+    border-radius: 4px;
+}
+
+.edit-weblink .ant-form-item {
+    margin-bottom: 18px;
+}
+
+.edit-weblink-title {
+    font-size: 15px;
+}
+
+.ant-popover-message {
+    display: block;
+}
+
+.share-collaboration-model .ant-modal-content {
+    border-radius: 6px;
+}
+
+.share-collaboration-model .ant-modal-body {
+    padding-top: 14px;
+}
+
+.share-collaboration-model .ant-card-body {
+    padding: 0;
+}
+
+.share-collaboration-model .ant-list-item {
+    padding: 8px 20px;
+}
+
+.share-collaboration-model .ant-spin-container {
+    height: 300px;
+    overflow: auto;
+}
+
+
+.add-weblink .ant-modal-content {
+    border-radius: 6px;
+}
+
+.add-weblink .ant-form-item-label > label {
+    color: #6c7d8f;
+    font-size: 13px;
+}
+
+.add-weblink .ant-input {
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.add-weblink .ant-btn {
+    height: 30px;
+    font-size: 13px;
+    border-radius: 4px;
+}
+
+.add-weblink .ant-modal-body {
+    padding: 24px;
+}

@@ -1,0 +1,14 @@
+syntax = "v1"
+
+@server(
+	group: swagger
+)
+service binghuang-api {
+	@doc(
+		summary: "swagger 文档"
+	)
+	@handler Swag
+	get /swagger
+	@handler SwagJSON
+	get /swagger-json
+}

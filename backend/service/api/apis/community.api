@@ -1,0 +1,160 @@
+syntax = "v1"
+
+info(
+	title: "community api"
+	desc: "社区"
+	author: "elza"
+	email: "473225193@qq.com"
+	version: "v1.0"
+)
+
+@server(
+	group: community
+	middleware: JWT
+)
+service binghuang-api {
+	
+	@doc(
+		summary: "发布资源到社区"
+	)
+	@handler CreatePublicCommunity
+	post /customer/:user_uid/community/public (CreatePublicCommunityRequest) returns (CreatePublicCommunityResponse)
+	
+	@doc(
+		summary: "更新分享社区元数据"
+	)
+	@handler UpdatePublicCommunityMeta
+	put /customer/:user_uid/community/:community_uid/meta (UpdatePublicCommunityMetaRequest) returns (UpdatePublicCommunityMetaResponse)
+	
+	@doc(
+		summary: "更新分享社区图片"
+	)
+	@handler UpdatePublicCommunityImage
+	put /customer/:user_uid/community/image (UpdatePublicCommunityImageRequest) returns (UpdatePublicCommunityImageResponse)
+	
+	@doc(
+		summary: "关闭分享社区资源"
+	)
+	@handler ClosePublicCommunity
+	delete /customer/:user_uid/community/:community_uid/close (ClosePublicCommunityRequest) returns (ClosePublicCommunityResponse)
+	
+	@doc(
+		summary: "查询自我发布资源分类"
+	)
+	@handler GetSelfPublicCommunity
+	get /customer/:user_uid/community/self (GetSelfPublicCommunityRequest) returns (GetSelfPublicCommunityResponse)
+	
+}
+
+type GetSelfPublicCommunityRequest {
+	UserUID  string `path:"user_uid"`
+	Category string `form:"category"`
+}
+
+type GetSelfPublicCommunityResponse {
+	HasAdmin bool               `json:"has_admin"`
+	Data     []*PublicCommunity `json:"data"`
+}
+
+type ClosePublicCommunityRequest {
+	UserUID      string `path:"user_uid"`
+	CommunityUID string `path:"community_uid"`
+}
+
+type ClosePublicCommunityResponse {
+	Message string `json:"message"`
+}
+
+type UpdatePublicCommunityImageRequest {
+	UserUID   string `path:"user_uid"`
+	FolderUID string `json:"folder_uid"`
+	Image     string `json:"image"`
+}
+
+type UpdatePublicCommunityImageResponse {
+	Message string `json:"message"`
+}
+
+type UpdatePublicCommunityMetaRequest {
+	UserUID      string `path:"user_uid"`
+	CommunityUID string `path:"community_uid"`
+	MetaType     int    `json:"meta_type"`
+}
+
+type UpdatePublicCommunityMetaResponse {
+	UID          string `json:"uid"`
+	FolderNumber string `json:"folder_number"`
+	Praise       int    `json:"praise"`
+	HasPraise    bool   `json:"has_praise"`
+	Star         int    `json:"star"`
+	HasStar      bool   `json:"has_star"`
+	View         int    `json:"view"`
+	Used         int    `json:"used"`
+	HasUsed      bool   `json:"has_used"`
+}
+
+type CreatePublicCommunityRequest {
+	UserUID     string   `path:"user_uid"`
+	CategoryUID string   `json:"category_uid"`
+	FolderUID   string   `json:"folder_uid"`
+	Title       string   `json:"title"`
+	Description string   `json:"description"`
+	Tags        []string `json:"tags,optional"`
+}
+
+type CreatePublicCommunityResponse {
+	Message string `json:"message"`
+}
+
+@server(
+	group: community/audit
+	middleware: JWT
+)
+service binghuang-api {
+	
+	@doc(
+		summary: "查询管理需要审核的资源"
+	)
+	@handler GetAuditPublicCommunity
+	get /customer/:user_uid/community/audit (GetAuditPublicCommunityRequest) returns (GetAuditPublicCommunityResponse)
+	
+	@doc(
+		summary: "更新发布资源审核操作"
+	)
+	@handler UpdateAuditPublicCommunity
+	put /customer/:user_uid/community/:community_uid/audit (UpdateAuditPublicCommunityRequest) returns (UpdateAuditPublicCommunityResponse)
+	
+}
+
+type UpdateAuditPublicCommunityRequest {
+	UserUID      string `path:"user_uid"`
+	CommunityUID string `path:"community_uid"`
+	Status       string `json:"status"` // 1 通过, -1 拒绝
+}
+
+type UpdateAuditPublicCommunityResponse {
+	Status string `json:"status"`
+}
+
+type GetAuditPublicCommunityRequest {
+	UserUID string `path:"user_uid"`
+}
+
+type GetAuditPublicCommunityResponse {
+	CommunityUID         string            `json:"community_uid"`
+	CommunityTitle       string            `json:"community_title"`
+	CommunityDescription string            `json:"community_description"`
+	Status               string            `json:"status"`
+	FolderUID            string            `json:"folder_uid"`
+	FolderNumber         string            `json:"folder_number"`
+	FolderName           string            `json:"folder_name"`
+	AuditCount           int               `json:"audit_count"`
+	PersonalWorkspaces   []*AuditWorkspace `json:"personal_workspaces"`
+}
+
+type AuditWorkspace {
+	IsOpen        bool               `json:"is_open"`
+	WorkspaceUID  string             `json:"workspace_uid"`
+	WorkspaceName string             `json:"workspace_name"`
+	WebLinks      []*PersonalWebLink `json:"web_links"`
+}

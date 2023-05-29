@@ -1,0 +1,37 @@
+syntax = "v1"
+
+info(
+	title: "upgrade api"
+	desc: "升级会员接口"
+	author: "elza"
+	email: "473225193@qq.com"
+	version: "v1.0"
+)
+
+@server(
+	group: anonymous/upgrade
+)
+service binghuang-api {
+	@doc(
+		summary: "查看充值列表"
+	)
+	@handler GetUpgradeRecharges
+	get /anonymous/upgrade/recharge (GetUpgradeRechargesRequest) returns (GetUpgradeRechargesResponse)
+}
+
+type GetUpgradeRechargesRequest {
+}
+
+type GetUpgradeRechargesResponse {
+	DefaultAmount    string              `json:"amount"`
+	UpgradeRecharges []*UpgradeRecharges `json:"upgrade_recharges"`
+}
+
+type UpgradeRecharges {
+	UID          string   `json:"uid"`
+	Title        string   `json:"title"`
+	OriginAmount string   `json:"origin_amount"`
+	Amount       string   `json:"amount"`
+	Descriptions []string `json:"descriptions"`
+	ThemeColor   string   `json:"theme_color"`
+}

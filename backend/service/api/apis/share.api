@@ -1,0 +1,299 @@
+syntax = "v1"
+
+info(
+	title: "share api"
+	desc: "共享接口"
+	author: "elza"
+	email: "473225193@qq.com"
+	version: "v1.0"
+)
+
+@server(
+	group: share/link
+	middleware: JWT
+)
+service binghuang-api {
+	@doc(
+		summary: "添加协作收藏链接"
+	)
+	@handler AddSharePersonalWebLink
+	post /customer/:user_uid/personal/folders/share/:share_uid/workspace/:workspace_uid/weblink (AddSharePersonalWebLinkRequest) returns (AddSharePersonalWebLinkResponse)
+	
+	@doc(
+		summary: "分享个人文件链接"
+	)
+	@handler ShareFolderLink
+	post /customer/:user_uid/personal/folders/:folder_uid/share (ShareFolderLinkRequest) returns (ShareFolderLinkResponse)
+	
+	@doc(
+		summary: "修改个人文件分享链接"
+	)
+	@handler UpdateShareLink
+	put /customer/:user_uid/personal/folders/:folder_uid/share/:share_uid (UpdateShareLinkRequest) returns (UpdateShareLinkResponse)
+	
+	@doc(
+		summary: "加入分享个人文件链接的协作"
+	)
+	@handler JoinShareLink
+	post /customer/:user_uid/personal/folders/share/:share_uid/join (JoinShareLinkRequest) returns (JoinShareLinkResponse)
+}
+
+type AddSharePersonalWebLinkRequest {
+	UserUID      string `path:"user_uid"`
+	ShareUID     string `path:"share_uid"`
+	WorkspaceUID string `path:"workspace_uid"`
+	URL          string `json:"url"`
+	Title        string `json:"title,optional"`
+}
+
+type AddSharePersonalWebLinkResponse {
+	Message string `json:"message"`
+}
+
+type UpdateShareLinkRequest {
+	UserUID    string `path:"user_uid"`
+	FolderUID  string `path:"folder_uid"`
+	ShareUID   string `path:"share_uid"`
+	Authority  string `json:"authority"`
+	ExpiredDay int    `json:"expired_day"`
+}
+
+type UpdateShareLinkResponse {
+	Message string `json:"message"`
+}
+
+type JoinShareLinkRequest {
+	UserUID  string `path:"user_uid"`
+	ShareUID string `path:"share_uid"`
+}
+
+type JoinShareLinkResponse {
+	HasShare     bool   `json:"has_share"` // 是否用于分享，false表示自己访问自己的链接
+	FolderUID    string `json:"folder_uid"`
+	FolderNumber string `json:"folder_number"`
+}
+
+type ShareFolderLinkRequest {
+	UserUID    string `path:"user_uid"`
+	FolderUID  string `path:"folder_uid"`
+	Authority  string `json:"authority"`
+	ExpiredDay int    `json:"expired_day"`
+}
+
+type ShareFolderLinkResponse {
+	ShareUID   string `json:"share_uid"`
+	ShareLink  string `json:"share_link"`
+	Authority  string `json:"authority"`
+	ExpiredDay int    `json:"expired_day"`
+}
+
+@server(
+	group: share/folder
+	middleware: JWT
+)
+service binghuang-api {
+	@doc(
+		summary: "个人文件分享管理"
+	)
+	@handler SharePersonalFolder
+	put /customer/:user_uid/personal/folders/:folder_uid/share (SharePersonalFolderRequest) returns (SharePersonalFolderResponse)
+	
+	@doc(
+		summary: "创建者更新协作人员权限"
+	)
+	@handler UpdateSharePersonnel
+	put /customer/:user_uid/personal/folders/:folder_uid/share/:share_uid/coll/:coll_uid (UpdateSharePersonnelRequest) returns (UpdateSharePersonnelResponse)
+	
+	@doc(
+		summary: "个人文件通过邀请分享好友"
+	)
+	@handler ShareFriendFolder
+	post /customer/:user_uid/personal/folders/share/:share_uid/friend (ShareFriendFolderRequest) returns (ShareFriendFolderResponse)
+	
+	@doc(
+		summary: "查询协作个人文件链接"
+	)
+	@handler GetSharePersonalFolder
+	get /customer/:user_uid/personal/folders/share (GetSharePersonalFolderRequest) returns (GetSharePersonalFolderResponse)
+	
+	@doc(
+		summary: "更新分享文件信息"
+	)
+	@handler UpdateSharePersonalFolder
+	put /customer/:user_uid/personal/folders/share/:share_uid (UpdateSharePersonalFolderRequest) returns (UpdateSharePersonalFolderResponse)
+	
+	@doc(
+		summary: "删除分享文件信息"
+	)
+	@handler DeleteSharePersonalFolder
+	delete /customer/:user_uid/personal/folders/share/:share_uid (DeleteSharePersonalFolderRequest) returns (DeleteSharePersonalFolderResponse)
+	
+	@doc(
+		summary: "复制分享文件到我到个人文件"
+	)
+	@handler CopySharePersonalFolder
+	post /customer/:user_uid/personal/folders/share/:share_uid/copy (CopySharePersonalFolderRequest) returns (CopySharePersonalFolderResponse)
+	
+	@doc(
+		summary: "查询协作管理的人员"
+	)
+	@handler GetShareAllPersonnel
+	get /customer/:user_uid/personal/folders/share/:share_uid/personnel (GetShareAllPersonnelRequest) returns (GetShareAllPersonnelResponse)
+	
+	@doc(
+		summary: "创建者管理协作人员"
+	)
+	@handler UpdateManageSharePersonnel
+	put /customer/:user_uid/personal/folders/share/:share_uid/personnel (UpdateManageSharePersonnelRequest) returns (UpdateManageSharePersonnelResponse)
+	
+	@doc(
+		summary: "创建者剔除协作人员"
+	)
+	@handler DeleteSharePersonnel
+	delete /customer/:user_uid/personal/folders/share/:share_uid/personnel (DeleteSharePersonnelRequest) returns (DeleteSharePersonnelResponse)
+	
+	@doc(
+		summary: "退出分享协作"
+	)
+	@handler ExitSharePersonalFolder
+	delete /customer/:user_uid/personal/folders/share/:share_uid/exit (ExitSharePersonalFolderRequest) returns (ExitSharePersonalFolderResponse)
+}
+
+type ExitSharePersonalFolderRequest {
+	UserUID  string `path:"user_uid"`
+	ShareUID string `path:"share_uid"`
+}
+
+type ExitSharePersonalFolderResponse {
+	Message string `json:"message"`
+}
+
+type ShareFriendFolderRequest {
+	UserUID   string `path:"user_uid"`
+	ShareUID  string `path:"share_uid"`
+	Email     string `json:"email"`
+	Authority string `json:"authority"`
+}
+
+type ShareFriendFolderResponse {
+	Message string `json:"message"`
+}
+
+type UpdateSharePersonnelRequest {
+	UserUID   string `path:"user_uid"`
+	FolderUID string `path:"folder_uid"`
+	ShareUID  string `path:"share_uid"`
+	CollUID   string `path:"coll_uid"`
+	Type      string `json:"type"` // 操作类型：0 为可查看，1 为可编辑，3 为删除
+}
+
+type UpdateSharePersonnelResponse {
+	Message string `json:"message"`
+}
+
+type SharePersonalFolderRequest {
+	UserUID   string `path:"user_uid"`
+	FolderUID string `path:"folder_uid"`
+	Offset    int    `form:"offset"`
+	Limit     int    `form:"limit"`
+}
+
+type SharePersonalFolderResponse {
+	FolderUID      string            `json:"folder_uid"`
+	ShareUID       string            `json:"share_uid"`
+	ShareLink      string            `json:"share_link"`
+	Authority      string            `json:"authority"`
+	ExpiredDay     int               `json:"expired_day"`
+	HasOwner       bool              `json:"has_owner"` // 是否是创建者
+	ShareNum       int               `json:"share_num"`
+	SharePersonnel []*SharePersonnel `json:"share_personnel"`
+}
+
+type GetShareAllPersonnelRequest {
+	UserUID  string `path:"user_uid"`
+	ShareUID string `path:"share_uid"`
+}
+
+type GetShareAllPersonnelResponse {
+	HasOwner       bool              `json:"has_owner"` // 是否是创建者
+	SharePersonnel []*SharePersonnel `json:"share_personnel"`
+}
+
+type SharePersonnel {
+	CollUID       string `json:"coll_uid"`
+	UserUID       string `json:"user_uid"`
+	UserName      string `json:"user_name"`
+	Email         string `json:"email"`
+	Authority     string `json:"authority"`
+	HasMembership bool   `json:"has_membership"`
+	Image         string `json:"image"`
+	HasSelf       bool   `json:"has_self"`
+	Sequence      int    `json:"sequence"`
+}
+
+type UpdateManageSharePersonnelRequest {
+	UserUID      string `path:"user_uid"`
+	ShareUID     string `path:"share_uid"`
+	OtherUserUID string `json:"other_user_uid"`
+	Authority    string `json:"authority"`
+}
+
+type UpdateManageSharePersonnelResponse {
+	Message string `json:"message"`
+}
+
+type DeleteSharePersonnelRequest {
+	UserUID      string `path:"user_uid"`
+	ShareUID     string `path:"share_uid"`
+	OtherUserUID string `json:"other_user_uid"`
+}
+
+type DeleteSharePersonnelResponse {
+	Message string `json:"message"`
+}
+
+type GetSharePersonalFolderRequest {
+	UserUID string `path:"user_uid"`
+}
+
+type GetSharePersonalFolderResponse {
+	Folders []*ShareFolder `json:"folders"`
+}
+
+type ShareFolder {
+	ShareUID     string `json:"share_uid"`
+	HasOwner     bool   `json:"has_owner"`
+	Authority    string `json:"authority"`
+	FolderUID    string `json:"folder_uid"`
+	FolderNumber string `json:"folder_number"`
+	FolderName   string `json:"folder_name"`
+}
+
+type UpdateSharePersonalFolderRequest {
+	UserUID    string `path:"user_uid"`
+	ShareUID   string `path:"share_uid"`
+	FolderName string `json:"folder_name"`
+}
+
+type UpdateSharePersonalFolderResponse {
+	Message string `json:"message"`
+}
+
+type DeleteSharePersonalFolderRequest {
+	UserUID  string `path:"user_uid"`
+	ShareUID string `path:"share_uid"`
+}
+
+type DeleteSharePersonalFolderResponse {
+	Message string `json:"message"`
+}
+
+type CopySharePersonalFolderRequest {
+	UserUID  string `path:"user_uid"`
+	ShareUID string `path:"share_uid"`
+	Type     int    `json:"type"`
+}
+
+type CopySharePersonalFolderResponse {
+	Message string `json:"message"`
+}

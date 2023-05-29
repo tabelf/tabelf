@@ -1,0 +1,107 @@
+.good-article-layout-content {
+    background: #f6f6f6;
+    padding: 0 0 80px 0;
+}
+
+.good-article-layout-content .ant-card-bordered {
+    border: 0;
+}
+
+.good-article-content, .good-article-collection,
+.good-article-hot-top, .good-article-affix-header,
+.good-article-ads {
+    border-radius: 6px;
+}
+
+.good-article-content .ant-card-body,
+.good-article-hot-top .ant-card-body {
+    padding: 0;
+}
+
+.good-article-affix-header {
+    border: 0;
+}
+
+.good-article-collection .ant-card-body {
+    padding: 12px 20px;
+}
+
+.good-article-ads .ant-card-body {
+    padding: 0;
+}
+
+.good-article-topic {
+    padding: 24px 16px 0 16px;
+    display: flex;
+    align-items: center;
+}
+
+.good-article-list {
+    padding: 0 16px;
+}
+
+.good-article-list .ant-list-item-meta {
+    align-items: normal;
+}
+
+.good-article-list .ant-list-item-meta-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.good-article-list .ant-list-item:hover {
+    background-color: #fff;
+}
+
+.good-article-hot-title {
+    padding: 12px 20px 2px 20px;
+}
+
+.good-article-hot-container {
+    padding: 10px 20px;
+}
+
+.good-article-hot-article {
+    display: flex;
+    margin-bottom: 6px;
+}
+
+.good-article-hot-article-title {
+    margin-left: 8px;
+    color: #5a5a5a;
+}
+
+.good-article-element-source-data {
+    font-size: 12px;
+    color: #aaa;
+}
+
+.article-star-folder .ant-modal-content {
+    border-radius: 6px;
+}
+
+.article-star-folder .ant-form-item-label > label {
+    color: #6c7d8f;
+    font-size: 13px;
+}
+
+.article-star-folder .ant-input {
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.article-star-folder .ant-btn {
+    height: 30px;
+    font-size: 13px;
+    border-radius: 4px;
+}
+
+.article-star-folder .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.good-article-collection-title {
+    padding: 16px 16px 0 16px;
+}

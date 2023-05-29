@@ -1,0 +1,70 @@
+syntax = "v1"
+import "apis/swagger.api"
+import "apis/anonymous.api"
+import "apis/customer.api"
+import "apis/share.api"
+import "apis/upgrade.api"
+import "apis/feedback.api"
+import "apis/message.api"
+import "apis/station.api"
+import "apis/community.api"
+import "apis/article.api"
+
+info(
+	title: "binghuang API"
+	desc: ""
+)
+
+type ErrorMessage {
+	Code    int    `json:"code"`
+	Message string `json:"message"`
+	TraceID string `json:"trace_id"`
+	SpanID  string `json:"span_id"`
+}
+
+type EmptyReq {
+}
+
+type ErrorReq {
+	Code int `form:"code"`
+}
+
+type TimeResp {
+	Now string `json:"now"`
+}
+
+type ErrorResp {
+	Code    string `json:"code"`
+	Message string `json:"message"`
+}
+
+type HelloRequest {
+	Name string `path:"name"`
+}
+
+type HelloResponse {
+	Message string `json:"message"`
+}
+
+@server(
+	group: global
+)
+service binghuang-api {
+	@doc(
+		summary: "health check"
+	)
+	@handler SayHello
+	get /api/hello/:name (HelloRequest) returns (HelloResponse)
+	
+	@doc(
+		summary: "获取系统时间"
+	)
+	@handler GetTime
+	get /api/global/datetime (EmptyReq) returns (TimeResp)
+	
+	@doc(
+		summary: "报错"
+	)
+	@handler GetError
+	get /api/global/error (ErrorReq) returns (ErrorResp)
+}

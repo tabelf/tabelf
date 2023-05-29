@@ -1,0 +1,13 @@
+.site-update-log-layout {
+    background: #ffffff;
+    padding: 0;
+    min-height: 750px;
+}
+
+.container-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    width: 100%;
+}

@@ -1,0 +1,172 @@
+.recommend-layout-header {
+    background: #ffffff;
+    padding: 0;
+    height: 71px;
+    border-bottom: 1px solid #e9edf2;
+}
+
+.recommend-header-logo {
+    width: 81px;
+    margin-top: 2px;
+    margin-left: 20px;
+}
+
+.recommend-layout-header .ant-menu-horizontal {
+    border-bottom: 0;
+}
+
+.recommend-layout-header .header-user {
+    text-align: right;
+    margin-right: 35px;
+}
+
+.recommend-layout-content {
+    background: #fbfcfc;
+    padding: 0;
+}
+
+.recommend-layout-content-container {
+    min-height: 688px;
+}
+
+.recommend-layout-content .ant-card-bordered {
+    border: 0;
+}
+
+.good-stations-element-container {
+    margin-top: 20px;
+    width: 305px;
+    border-radius: 6px;
+    border-color: transparent;
+    box-shadow: 0 1px 2px -2px rgb(0 0 0 / 16%), 0 3px 6px 0 rgb(0 0 0 / 12%), 0 5px 12px 4px rgb(0 0 0 / 9%);
+}
+
+.good-stations-element-container > .ant-card-body {
+    padding: 12px 0 0 0;
+}
+
+.good-stations-element-content {
+    padding-left: 12px;
+    padding-right: 12px;
+    display: flex;
+    overflow: hidden;
+}
+
+.good-stations-element-title {
+    width: 195px;
+    font-size: 14px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; /* 表示最多显示两行 */
+    overflow: hidden;
+}
+
+.good-stations-element-description {
+    width: 195px;
+    margin-top: 5px;
+    font-size: 12px;
+    opacity: 0.7;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* 表示最多显示两行 */
+    overflow: hidden;
+}
+
+.good-stations-element-tags {
+    margin-top: 5px;
+    margin-bottom: 20px;
+    align-self: flex-end;
+}
+
+.good-stations-element-image {
+    margin-left: 15px;
+    margin-top: 35px;
+    margin-bottom: 20px;
+}
+
+.good-stations-element-source {
+    height: 26px;
+    padding-left: 12px;
+    padding-right: 12px;
+    background-color: #f6f6f6;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.good-stations-element-source-title {
+    font-size: 12px;
+    color: #aaa;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1; /* 表示最多显示两行 */
+    overflow: hidden;
+    max-width: 80px;
+}
+
+.good-stations-element-source-data {
+    font-size: 12px;
+    color: #aaa;
+}
+
+.good-stations-element-source-author {
+    font-size: 12px;
+    color: #aaa;
+    width: 60px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1; /* 表示最多显示两行 */
+    overflow: hidden;
+}
+
+.good-stations-star {
+    color: #00AEEC;
+    cursor: pointer;
+}
+
+.good-stations-unstar {
+    color: #aaa;
+    cursor: pointer;
+}
+
+.station-base-info-form .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.station-base-info-form .ant-upload-list-item-actions .ant-btn {
+    color: #fff;
+}
+
+.station-base-info-form .ant-typography {
+    margin-bottom: 0;
+}
+
+.station-base-info-form .ant-typography-edit-content {
+    margin-left: 12px;
+    width: 315px;
+}
+
+.station-star-folder .ant-modal-content {
+    border-radius: 6px;
+}
+
+.station-star-folder .ant-form-item-label > label {
+    color: #6c7d8f;
+    font-size: 13px;
+}
+
+.station-star-folder .ant-input {
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.station-star-folder .ant-btn {
+    height: 30px;
+    font-size: 13px;
+    border-radius: 4px;
+}
+
+.station-star-folder .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    border-radius: 4px;
+    font-size: 13px;
+}

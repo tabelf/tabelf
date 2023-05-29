@@ -1,0 +1,163 @@
+.logo {
+    height: 130px;
+    text-align: center;
+    line-height: 130px;
+}
+
+.logo-image {
+    height: 100px;
+}
+
+#components-layout-demo-fixed-sider .logo {
+    height: 32px;
+    margin: 16px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.custom-space {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.breadcrumb-space {
+    margin: 0 auto;
+}
+
+.tab-create {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.tab-create-button {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.ant-menu-inline {
+    border-right: 0px solid #f0f0f0;
+}
+
+.sidebar-menu-suffix {
+    position: absolute;
+    top: 20%;
+    right: 16px;
+    width: 23px;
+    color: rgba(0, 0, 0, 0.85);
+    line-height: 10px;
+}
+
+.sidebar-menu-btn {
+    opacity: 0;
+}
+
+.ant-menu-item:hover .ant-btn {
+    opacity: 1;
+}
+
+.ant-menu-item .ant-btn:focus {
+    opacity: 1;
+}
+
+.add-folder .ant-modal-content {
+    border-radius: 6px;
+}
+
+.add-folder .ant-form-item-label > label {
+    color: #6c7d8f;
+    font-size: 13px;
+}
+
+.add-folder .ant-input {
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.add-folder .ant-btn {
+    height: 30px;
+    font-size: 13px;
+    border-radius: 4px;
+}
+
+.folder-menu-extra .ant-dropdown-menu {
+    border-radius: 6px;
+}
+
+.folder-menu-extra .ant-dropdown-menu-item, .ant-dropdown-menu-submenu-title {
+    color: #212930;
+    font-size: 13px;
+}
+
+/* 卡片本身样式 */
+.share-folder .ant-modal-content {
+    border-radius: 6px;
+}
+
+/* 卡片表单字体 */
+.share-folder .ant-form-item-label > label {
+    color: #6c7d8f;
+    font-size: 13px;
+}
+
+/* 卡片表单输入框 */
+.share-folder .ant-input {
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.share-folder .ant-btn {
+    font-size: 13px;
+}
+
+.share-folder .ant-modal-confirm-btns .ant-btn {
+    display: none;
+}
+
+.share-folder .ant-radio-wrapper {
+    color: #212930;
+}
+
+.share-folder .ant-form label {
+    font-size: 13px;
+}
+
+.share-folder .ant-radio .ant-radio-inner {
+    width: 14px;
+    height: 14px;
+}
+
+.share-folder .ant-modal-body {
+    padding-top: 14px;
+}
+
+.user-menu-inline {
+    height: 340px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.user-menu-inline .ant-menu-vertical .ant-menu-item:not(:last-child), .ant-menu-vertical-left .ant-menu-item:not(:last-child), .ant-menu-vertical-right .ant-menu-item:not(:last-child), .ant-menu-inline .ant-menu-item:not(:last-child) {
+    margin-bottom: 0;
+}
+
+.advertisement-ads {
+    margin-top: 5px;
+    margin-bottom: 14px;
+    height: 97px;
+}
+
+.advertisement-ads .ant-card-bordered {
+    border: 0;
+}
+
+.advertisement-card .ant-card-body {
+    padding: 0 12px;
+}
+
+.user-file-quantity {
+    color: #212930;
+    width: 192px;
+    height: 30px;
+    position: fixed;
+    bottom: 33px;
+    display: inline-block;
+}

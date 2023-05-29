@@ -1,0 +1,25 @@
+.base-layout-header {
+    background: #ffffff;
+    padding: 0;
+    height: 71px;
+    border-bottom: 1px solid #e9edf2;
+}
+
+.base-layout-header .ant-menu-horizontal {
+    border-bottom: 0;
+}
+
+.base-header-logo {
+    width: 81px;
+    margin-top: 2px;
+    margin-left: 20px;
+}
+
+.base-layout-header .header-user {
+    text-align: right;
+    margin-right: 35px;
+}
+
+.header-user .ant-btn {
+    border-radius: 4px;
+}

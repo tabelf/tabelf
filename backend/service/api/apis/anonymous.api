@@ -1,0 +1,343 @@
+syntax = "v1"
+
+info(
+	title: "account api"
+	desc: "账户接口"
+	author: "elza"
+	email: "473225193@qq.com"
+	version: "v1.0"
+)
+
+@server(
+	group: anonymous/account
+)
+service binghuang-api {
+	@doc(
+		summary: "获取登录二维码"
+	)
+	@handler GetAuthLoginQrCode
+	get /anonymous/account/auth/login/qr_code (GetAuthLoginQrCodeRequest) returns (GetAuthLoginQrCodeResponse)
+	
+	@doc(
+		summary: "用户登录/注册"
+	)
+	@handler AuthLogin
+	post /anonymous/account/auth/login (AuthLoginRequest) returns (AuthLoginResponse)
+	
+	@doc(
+		summary: "OAuth微信验证服务请求"
+	)
+	@handler GetAuthLoginWechatAuthority
+	get /anonymous/account/wechat/auth (GetAuthLoginWechatAuthorityRequest) returns (GetAuthLoginWechatAuthorityResponse)
+	
+	@doc(
+		summary: "OAuth微信消息功能回调"
+	)
+	@handler WechatMessageCallback
+	post /anonymous/account/wechat/auth (WechatMessageCallbackRequest) returns (WechatMessageCallbackResponse)
+}
+
+type GetAuthLoginQrCodeRequest {}
+
+type GetAuthLoginQrCodeResponse {
+	ExpiredAt string `json:"expired_at"` // 过期时间
+	URL       string `json:"url"`        // 登录二维码
+}
+
+type AuthLoginRequest {
+	AuthCode    string `json:"auth_code"`
+	ReferralUID string `json:"referral_uid,optional"`
+}
+
+type AuthLoginResponse {
+	UserUID  string `json:"user_uid"`
+	Username string `json:"username"`
+	Token    string `json:"token"`
+}
+
+type GetAuthLoginWechatAuthorityRequest {
+	Signature string `form:"signature"`
+	Nonce     string `form:"nonce"`
+	Echostr   string `form:"echostr"`
+	Timestamp string `form:"timestamp"`
+}
+
+type GetAuthLoginWechatAuthorityResponse {
+	Echostr string `json:"echostr"`
+}
+
+type WechatMessageCallbackRequest {
+	ToUserName   string `json:"ToUserName"`
+	FromUserName string `json:"FromUserName"`
+	CreateTime   string `json:"CreateTime"`
+	MsgType      string `json:"MsgType"`
+	Content      string `json:"Content"`
+	Event        string `json:"Event"`
+	EventKey     string `json:"EventKey"`
+}
+
+type WechatMessageCallbackResponse {
+	Message string `json:"message"`
+}
+
+@server(
+	group: anonymous/station
+)
+service binghuang-api {
+	
+	@doc(
+		summary: "匿名好站推荐分类查询"
+	)
+	@handler GetGoodStationCategory
+	get /anonymous/station/category (GetGoodStationCategoryRequest) returns (GetGoodStationCategoryResponse)
+	
+	@doc(
+		summary: "好站推荐查询"
+	)
+	@handler GetGoodStationRecommend
+	get /anonymous/station/recommend (GetGoodStationRecommendRequest) returns (GetGoodStationRecommendResponse)
+	
+}
+
+type GetGoodStationCategoryRequest {
+	UserUID string `form:"user_uid,optional"`
+}
+
+type GetGoodStationCategoryResponse {
+	Wait                  int                    `json:"wait"`
+	HasAuthority          bool                   `json:"has_authority"`
+	GoodStationCategories []*GoodStationCategory `json:"categories"`
+}
+
+type GoodStationCategory {
+	UID  string `json:"uid"`
+	Name string `json:"name"`
+}
+
+type GetGoodStationRecommendRequest {
+	UserUID     string `form:"user_uid,optional"`
+	CategoryUID string `form:"category_uid,optional"`
+	Sorted      int    `form:"sorted"`
+	Offset      int    `form:"offset"`
+	Limit       int    `form:"limit"`
+}
+
+type GetGoodStationRecommendResponse {
+	Total int                     `json:"total"`
+	Data  []*GoodStationRecommend `json:"data"`
+}
+
+type GoodStationRecommend {
+	UID          string   `json:"uid"`
+	Title        string   `json:"title"`
+	Description  string   `json:"description"`
+	Image        string   `json:"image"`
+	Tags         []string `json:"tags"`
+	Icon         string   `json:"icon"`
+	Source       string   `json:"source"`
+	Link         string   `json:"link"`
+	Praise       int      `json:"praise"`
+	HasPraise    bool     `json:"has_praise"`
+	Star         int      `json:"star"`
+	HasStar      bool     `json:"has_star"`
+	View         int      `json:"view"`
+	CategoryName string   `json:"category_name"`
+}
+
+@server(
+	group: anonymous/community
+)
+service binghuang-api {
+	
+	@doc(
+		summary: "分享社区分类查询"
+	)
+	@handler GetPublicCommunityCategory
+	get /anonymous/community/category (GetPublicCommunityCategoryRequest) returns (GetPublicCommunityCategoryResponse)
+	
+	@doc(
+		summary: "分享社区内容查询列表"
+	)
+	@handler GetPublicCommunity
+	get /anonymous/community/public (GetPublicCommunityRequest) returns (GetPublicCommunityResponse)
+	
+	@doc(
+		summary: "分享社区查询详情"
+	)
+	@handler GetPublicCommunityDetail
+	get /anonymous/community/:community_uid/detail (GetPublicCommunityDetailRequest) returns (GetPublicCommunityDetailResponse)
+	
+}
+
+type GetPublicCommunityDetailRequest {
+	CommunityUID string `path:"community_uid"`
+	UserUID      string `form:"user_uid,optional"`
+}
+
+type GetPublicCommunityDetailResponse {
+	UID         string   `json:"uid"`
+	Title       string   `json:"title"`
+	Description string   `json:"description"`
+	HtmlDesc    string   `json:"html_desc"`
+	Image       string   `json:"image"`
+	Tags        []string `json:"tags"`
+	Praise      int      `json:"praise"`
+	HasPraise   bool     `json:"has_praise"`
+	Used        int      `json:"used"`
+	View        int      `json:"view"`
+	Star        int      `json:"star"`
+	HasStar     bool     `json:"has_star"`
+	UserUID     string   `json:"user_uid"`   // 用户uid
+	UserImage   string   `json:"user_image"` // 用户图片
+	UserName    string   `json:"user_name"`
+	Fans        int      `json:"fans"`
+	Open        int      `json:"open"`
+	HasSelf     bool     `json:"has_self"`
+	HasFollow   bool     `json:"has_follow"` // 是否关注
+}
+
+type GetPublicCommunityCategoryRequest {
+	UserUID string `form:"user_uid,optional"`
+}
+
+type GetPublicCommunityCategoryResponse {
+	Wait                    int                        `json:"wait"`
+	HasAdmin                bool                       `json:"has_admin"`
+	PublicCommunityCategory []*PublicCommunityCategory `json:"categories"`
+}
+
+type PublicCommunityCategory {
+	UID  string `json:"uid"`
+	Name string `json:"name"`
+}
+
+type GetPublicCommunityRequest {
+	CategoryUID string `form:"category_uid,optional"`
+	Sorted      int    `form:"sorted"`
+	Offset      int    `form:"offset"`
+	Limit       int    `form:"limit"`
+}
+
+type GetPublicCommunityResponse {
+	Total int                `json:"total"`
+	Data  []*PublicCommunity `json:"data"`
+}
+
+type PublicCommunity {
+	UID         string `json:"uid"`
+	Title       string `json:"title"`
+	Description string `json:"description"`
+	Image       string `json:"image"`
+	Praise      int    `json:"praise"`
+	Used        int    `json:"used"`
+	View        int    `json:"view"`
+	UserUID     string `json:"user_uid"`   // 用户uid
+	UserImage   string `json:"user_image"` // 用户图片
+	UserName    string `json:"user_name"`
+	Status      string `json:"status"`
+}
+
+@server(
+	group: anonymous/article
+)
+service binghuang-api {
+	
+	@doc(
+		summary: "匿名好文精选分类查询"
+	)
+	@handler GetGoodArticleCategory
+	get /anonymous/article/category (GetGoodArticleCategoryRequest) returns (GetGoodArticleCategoryResponse)
+	
+	@doc(
+		summary: "好文精选查询"
+	)
+	@handler GetGoodArticleRecommend
+	get /anonymous/article/recommend (GetGoodArticleRecommendRequest) returns (GetGoodArticleRecommendResponse)
+	
+	@doc(
+		summary: "好文精选菜单数据"
+	)
+	@handler GetGoodArticleMenuData
+	get /anonymous/article/norm (GetGoodArticleMenuDataRequest) returns (GetGoodArticleMenuDataResponse)
+	
+	@doc(
+		summary: "好文精选热榜"
+	)
+	@handler GetHotGoodArticle
+	get /anonymous/article/hot (GetHotGoodArticleRequest) returns (GetHotGoodArticleResponse)
+	
+	@doc(
+		summary: "好文精选浏览"
+	)
+	@handler ViewGoodArticle
+	put /anonymous/article/:article_uid/view (ViewGoodArticleRequest) returns (ViewGoodArticleResponse)
+	
+}
+
+type ViewGoodArticleRequest {
+	ArticleUID string `path:"article_uid"`
+}
+
+type ViewGoodArticleResponse {
+	Message string `json:"message"`
+}
+
+type GetHotGoodArticleRequest {}
+
+type GetHotGoodArticleResponse {
+	Data []*HotGoodArticle `json:"data"`
+}
+
+type HotGoodArticle {
+	UID   string `json:"uid"`
+	Title string `json:"title"`
+	Link  string `json:"link"`
+}
+
+type GetGoodArticleMenuDataRequest {
+	UserUID string `form:"user_uid,optional"`
+}
+
+type GetGoodArticleMenuDataResponse {
+	HasAnonymous bool `json:"has_anonymous"`
+	HasAuthority bool `json:"has_authority"`
+	Collection   int  `json:"collection"`
+	Publish      int  `json:"publish"`
+	Audit        int  `json:"audit"`
+}
+
+type GetGoodArticleCategoryRequest {}
+
+type GetGoodArticleCategoryResponse {
+	GoodArticleCategories []*GoodArticleCategory `json:"categories"`
+}
+
+type GoodArticleCategory {
+	UID  string `json:"uid"`
+	Name string `json:"name"`
+}
+
+type GetGoodArticleRecommendRequest {
+	UserUID     string `form:"user_uid,optional"`
+	CategoryUID string `form:"category_uid,optional"`
+	Sorted      int    `form:"sorted"`
+	Offset      int    `form:"offset"`
+	Limit       int    `form:"limit"`
+}
+
+type GetGoodArticleRecommendResponse {
+	Total int                     `json:"total"`
+	Data  []*GoodArticleRecommend `json:"data"`
+}
+
+type GoodArticleRecommend {
+	UID         string `json:"uid"`
+	Title       string `json:"title"`
+	Image       string `json:"image"`
+	Description string `json:"description"`
+	Source      string `json:"source"`
+	Link        string `json:"link"`
+	Star        int    `json:"star"`
+	HasStar     bool   `json:"has_star"`
+	Status      string `json:"status"`
+}

@@ -1,0 +1,32 @@
+syntax = "v1"
+
+info(
+	title: "feedback api"
+	desc: "问题反馈接口"
+	author: "elza"
+	email: "473225193@qq.com"
+	version: "v1.0"
+)
+
+@server(
+	group: feedback
+	middleware: JWT
+)
+service binghuang-api {
+	@doc(
+		summary: "问题反馈"
+	)
+	@handler CreateFeedback
+	post /customer/:user_uid/personal/feedback (CreateFeedbackRequest) returns (CreateFeedbackResponse)
+}
+
+type CreateFeedbackRequest {
+	UserUID     string `path:"user_uid"`
+	Category    string `json:"category"`
+	Description string `json:"description,optional"`
+	OrderNumber string `json:"order_number,optional"`
+}
+
+type CreateFeedbackResponse {
+	Message string `json:"message"`
+}

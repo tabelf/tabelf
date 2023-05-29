@@ -1,0 +1,63 @@
+.site-recycle-background {
+    background: #ffffff;
+    padding: 0;
+    min-height: 80vh;
+}
+
+.recycle-title {
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.recycle-content .ant-collapse > .ant-collapse-item > .ant-collapse-header {
+    padding-bottom: 0;
+}
+
+.recycle-workspace {
+    border-radius: 8px;
+}
+
+.recycle-workspace > .ant-card-body {
+    padding: 6px 0px;
+}
+
+.recycle-workspace > .ant-card-body .ant-list-item {
+    padding: 6px 16px 6px 16px;
+}
+
+.file-background {
+    margin-top: 6px;
+    width: 32px;
+    height: 32px;
+    background: url(../../../public/img.png) no-repeat 0 0;
+    background-size: 32px 32px;
+    text-align: center;
+    line-height: 30px;
+}
+
+.recycle-menu-extra .ant-dropdown-menu {
+    border-radius: 6px;
+}
+
+.recycle-menu-extra .ant-dropdown-menu-item, .ant-dropdown-menu-submenu-title {
+    color: #212930;
+    font-size: 13px;
+}
+
+.recycle-menu-btn {
+    display: none;
+}
+
+.recycle-list:hover .recycle-menu-btn {
+    display: inline-block;
+}
+
+.recycle-list .ant-btn:focus {
+    display: inline-block;
+}
+
+.recycle-list .ant-list-item-meta-description, .recycle-list .ant-list-item-meta-title {
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}

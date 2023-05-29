@@ -1,0 +1,188 @@
+syntax = "v1"
+
+info(
+	title: "article api"
+	desc: "好文发现"
+	author: "elza"
+	email: "473225193@qq.com"
+	version: "v1.0"
+)
+
+@server(
+	group: article
+	middleware: JWT
+)
+service binghuang-api {
+	
+	@doc(
+		summary: "查询好文精选详情"
+	)
+	@handler GetGoodArticle
+	get /customer/:user_uid/article/:article_uid/detail (GetGoodArticleRequest) returns (GetGoodArticleResponse)
+	
+	@doc(
+		summary: "更新好文精选详情"
+	)
+	@handler UpdateGoodArticle
+	put /customer/:user_uid/article/:article_uid/detail (UpdateGoodArticleRequest) returns (UpdateGoodArticleResponse)
+	
+	@doc(
+		summary: "添加好文精选"
+	)
+	@handler AddGoodArticleRecommend
+	post /customer/:user_uid/article/recommend (AddGoodArticleRecommendRequest) returns (AddGoodArticleRecommendResponse)
+	
+	@doc(
+		summary: "上传好文精选头图"
+	)
+	@handler UploadGoodArticleImage
+	put /customer/:user_uid/article/image (UploadGoodArticleImageRequest) returns (UploadGoodArticleImageResponse)
+	
+	@doc(
+		summary: "更新好文精选元数据"
+	)
+	@handler UpdateGoodArticleMeta
+	put /customer/:user_uid/article/:article_uid/meta (UpdateGoodArticleMetaRequest) returns (UpdateGoodArticleMetaResponse)
+	
+	@doc(
+		summary: "好文精选添加到我的空间"
+	)
+	@handler GoodArticleCollection
+	put /customer/:user_uid/article/:article_uid/collection (GoodArticleCollectionRequest) returns (GoodArticleCollectionResponse)
+	
+	@doc(
+		summary: "好文精选查询我的收藏"
+	)
+	@handler GetGoodArticleCollection
+	get /customer/:user_uid/article/collection (GetGoodArticleCollectionRequest) returns (GetGoodArticleCollectionResponse)
+	
+	@doc(
+		summary: "好文精选查询内容审核"
+	)
+	@handler GetGoodArticleAudit
+	get /customer/:user_uid/article/audit (GetGoodArticleAuditRequest) returns (GetGoodArticleAuditResponse)
+	
+	@doc(
+		summary: "好文精选内容审核"
+	)
+	@handler UpdateGoodArticleAudit
+	put /customer/:user_uid/article/:article_uid/audit (UpdateGoodArticleAuditRequest) returns (UpdateGoodArticleAuditResponse)
+	
+	@doc(
+		summary: "好文精选我的发布"
+	)
+	@handler GetGoodArticleSubmit
+	get /customer/:user_uid/article/submit (GetGoodArticleSubmitRequest) returns (GetGoodArticleSubmitResponse)
+}
+
+type GetGoodArticleSubmitRequest {
+	UserUID string `path:"user_uid"`
+}
+
+type GetGoodArticleSubmitResponse {
+	Data []*GoodArticleRecommend `json:"data"`
+}
+
+type UpdateGoodArticleAuditRequest {
+	UserUID    string `path:"user_uid"`
+	ArticleUID string `path:"article_uid"`
+	Status     bool   `json:"status"`
+}
+
+type UpdateGoodArticleAuditResponse {
+	Message string `json:"message"`
+}
+
+type GetGoodArticleAuditRequest {
+	UserUID string `path:"user_uid"`
+}
+
+type GetGoodArticleAuditResponse {
+	Data []*GoodArticleRecommend `json:"data"`
+}
+
+type GetGoodArticleCollectionRequest {
+	UserUID string `path:"user_uid"`
+}
+
+type GetGoodArticleCollectionResponse {
+	Data []*GoodArticleRecommend `json:"data"`
+}
+
+type GetGoodArticleRequest {
+	UserUID    string `path:"user_uid"`
+	ArticleUID string `path:"article_uid"`
+}
+
+type GetGoodArticleResponse {
+	ArticleUID  string `json:"article_uid"`
+	CategoryUID string `json:"category_uid"`
+	Title       string `json:"title"`
+	Link        string `json:"link"`
+	Source      string `json:"source"`
+	Image       string `json:"image"`
+}
+
+type UpdateGoodArticleRequest {
+	UserUID     string `path:"user_uid"`
+	ArticleUID  string `json:"article_uid"`
+	CategoryUID string `json:"category_uid"`
+	Title       string `json:"title"`
+	Link        string `json:"link"`
+	Source      string `json:"source"`
+	Image       string `json:"image,optional"`
+}
+
+type UpdateGoodArticleResponse {
+	UID         string `json:"uid"`
+	CategoryUID string `json:"category_uid"`
+	Title       string `json:"title"`
+	Link        string `json:"link"`
+	Source      string `json:"source"`
+	Image       string `json:"image"`
+	Status      string `json:"status"`
+}
+
+type AddGoodArticleRecommendRequest {
+	UserUID     string `path:"user_uid"`
+	CategoryUID string `json:"category_uid"`
+	Title       string `json:"title,optional"`
+	Link        string `json:"link"`
+	Source      string `json:"source"`
+	Image       string `json:"image,optional"`
+}
+
+type AddGoodArticleRecommendResponse {
+	Message string `json:"message"`
+}
+
+type UploadGoodArticleImageRequest {
+	UserUID  string `path:"user_uid"`
+	File     []byte `json:"file"`
+	Filename string `json:"filename"`
+}
+
+type UploadGoodArticleImageResponse {
+	ImageURL string `json:"image_url"`
+}
+
+type UpdateGoodArticleMetaRequest {
+	UserUID    string `path:"user_uid"`
+	ArticleUID string `path:"article_uid"`
+	MetaType   int    `json:"meta_type"`
+}
+
+type UpdateGoodArticleMetaResponse {
+	UID     string `json:"uid"`
+	HasStar bool   `json:"has_star"`
+}
+
+type GoodArticleCollectionRequest {
+	UserUID    string `path:"user_uid"`
+	ArticleUID string `path:"article_uid"`
+	FolderUID  string `json:"folder_uid"`
+}
+
+type GoodArticleCollectionResponse {
+	Message string `json:"message"`
+}

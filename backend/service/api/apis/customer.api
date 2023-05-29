@@ -1,0 +1,577 @@
+syntax = "v1"
+
+info(
+	title: "customer api"
+	desc: "用户接口"
+	author: "elza"
+	email: "473225193@qq.com"
+	version: "v1.0"
+)
+
+@server(
+	group: customer/account
+	middleware: JWT
+)
+service binghuang-api {
+	@doc(
+		summary: "获取个人团队消息"
+	)
+	@handler GetPersonalTeams
+	get /customer/:user_uid/personal/teams (GetPersonalTeamsRequest) returns (GetPersonalTeamsResponse)
+	
+	@doc(
+		summary: "获取个人网址数量"
+	)
+	@handler GetPersonalWebLinkInfo
+	get /customer/:user_uid/personal/weblink/info (GetPersonalWebLinkInfoRequest) returns (GetPersonalWebLinkInfoResponse)
+	
+	@doc(
+		summary: "获取个人消息"
+	)
+	@handler GetPersonalAccountInfo
+	get /customer/:user_uid/personal/info (GetPersonalAccountInfoRequest) returns (GetPersonalAccountInfoResponse)
+	
+	@doc(
+		summary: "更新个人消息"
+	)
+	@handler UpdatePersonalAccountInfo
+	put /customer/:user_uid/personal/info (UpdatePersonalAccountInfoRequest) returns (UpdatePersonalAccountInfoResponse)
+	
+	@doc(
+		summary: "上传个人图片"
+	)
+	@handler UpdatePersonalAccountImage
+	put /customer/:user_uid/personal/upload (UpdatePersonalAccountImageRequest) returns (UpdatePersonalAccountImageResponse)
+	
+	@doc(
+		summary: "搜索收藏和共享的链接"
+	)
+	@handler SearchWebLinks
+	get /customer/:user_uid/personal/search (SearchWebLinksRequest) returns (SearchWebLinksResponse)
+	
+	@doc(
+		summary: "查询邀请记录信息"
+	)
+	@handler GetPersonalInvite
+	get /customer/:user_uid/personal/invite (GetPersonalInviteRequest) returns (GetPersonalInviteResponse)
+	
+	@doc(
+		summary: "关注用户"
+	)
+	@handler FocusPersonalAccount
+	post /customer/:user_uid/personal/focus (FocusPersonalAccountRequest) returns (FocusPersonalAccountResponse)
+	
+}
+
+type FocusPersonalAccountRequest {
+	UserUID     string `path:"user_uid"`
+	FolloweeUID string `json:"followee_uid"` // 被关注者
+	Status      bool   `json:"status"`       // true 关注
+}
+
+type FocusPersonalAccountResponse {
+	Message string `json:"message"`
+}
+
+type GetPersonalInviteRequest {
+	UserUID string `path:"user_uid"`
+}
+
+type GetPersonalInviteResponse {
+	InviteURL    string         `json:"invite_url"`   // 邀请链接
+	Earned       int            `json:"earned"`       // 挣得文件数
+	Invited      int            `json:"invited"`      // 邀请人数
+	Achievements []*Achievement `json:"achievements"` // 成就, 最多20个，时间倒序
+}
+
+type Achievement {
+	UserUID   string `json:"user_uid"` // 用户uid
+	Image     string `json:"image"`    // 用户图片
+	UserName  string `json:"user_name"`
+	CreatedAt string `json:"created_at"`
+}
+
+type SearchWebLinksRequest {
+	UserUID string `path:"user_uid"`
+	Keyword string `form:"keyword,optional"`
+	Type    int    `form:"type"` // 0 为全部, 1 为我的, 2 为协作
+}
+
+type SearchWebLinksResponse {
+	SearchWebLinks []*SearchWebLink `json:"search_web_links"`
+}
+
+type SearchWebLink {
+	FolderUID    string `json:"folder_uid"`
+	FolderNumber string `json:"folder_number"`
+	LinkUID      string `json:"link_uid"`
+	Title        string `json:"title"`
+	Image        string `json:"image"`
+	Link         string `json:"link"`
+	Description  string `json:"description"`
+}
+
+type UpdatePersonalAccountImageRequest {
+	UserUID  string `path:"user_uid"`
+	File     []byte `json:"file"`
+	Filename string `json:"filename"`
+}
+
+type UpdatePersonalAccountImageResponse {
+	ImageURL string `json:"image_url"`
+}
+
+type GetPersonalAccountInfoRequest {
+	UserUID string `path:"user_uid"`
+}
+
+type GetPersonalAccountInfoResponse {
+	UserUID       string `json:"user_uid"`
+	UserName      string `json:"user_name"`
+	Email         string `json:"email"`
+	Industry      string `json:"industry"`
+	Image         string `json:"image"`
+	Description   string `json:"description"`
+	HasMembership bool   `json:"has_membership"`
+	HasEntire     bool   `json:"has_entire"` // 是否完成了基本信息
+}
+
+type UpdatePersonalAccountInfoRequest {
+	UserUID     string `path:"user_uid"`
+	UserName    string `json:"user_name,optional"`
+	Email       string `json:"email,optional"`
+	Industry    string `json:"industry,optional"`
+	Description string `json:"description,optional"`
+}
+
+type UpdatePersonalAccountInfoResponse {
+	Message string `json:"message"`
+}
+
+type GetPersonalWebLinkInfoRequest {
+	UserUID string `path:"user_uid"`
+}
+
+type GetPersonalWebLinkInfoResponse {
+	UsedQuantity  int  `json:"used_quantity"`
+	TotalQuantity int  `json:"total_quantity"`
+	Percent       int  `json:"percent"`
+	HasLimit      bool `json:"has_limit"`
+}
+
+type GetPersonalTeamsRequest {
+	UserUID string `path:"user_uid"`
+}
+
+type GetPersonalTeamsResponse {
+	PersonalTeams []*PersonalTeam `json:"personal_teams"`
+}
+
+type PersonalTeam {
+	TeamUID   string `json:"team_uid"`
+	TeamName  string `json:"team_name"`
+	ExpiredAt string `json:"expired_at"`
+}
+
+@server(
+	group: customer/folder
+	middleware: JWT
+)
+service binghuang-api {
+	@doc(
+		summary: "获取个人文件列表"
+	)
+	@handler GetPersonalFolders
+	get /customer/:user_uid/personal/folders (GetPersonalFoldersRequest) returns (GetPersonalFoldersResponse)
+	
+	@doc(
+		summary: "添加个人文件"
+	)
+	@handler AddPersonalFolder
+	post /customer/:user_uid/personal/folders (AddPersonalFolderRequest) returns (AddPersonalFolderResponse)
+	
+	@doc(
+		summary: "更新个人文件"
+	)
+	@handler UpdatePersonalFolder
+	put /customer/:user_uid/personal/folders/:folder_uid (UpdatePersonalFolderRequest) returns (UpdatePersonalFolderResponse)
+	
+	@doc(
+		summary: "删除个人文件"
+	)
+	@handler DeletePersonalFolder
+	delete /customer/:user_uid/personal/folders/:folder_uid (DeletePersonalFolderRequest) returns (DeletePersonalFolderResponse)
+	
+	@doc(
+		summary: "复制个人文件"
+	)
+	@handler CopyPersonalFolder
+	post /customer/:user_uid/personal/folders/:folder_uid/copy (CopyPersonalFolderRequest) returns (CopyPersonalFolderResponse)
+}
+
+type CopyPersonalFolderRequest {
+	UserUID   string `path:"user_uid"`
+	FolderUID string `path:"folder_uid"`
+	Type      int    `json:"type"`
+}
+
+type CopyPersonalFolderResponse {
+	Message string `json:"message"`
+}
+
+type GetPersonalFoldersRequest {
+	UserUID string `path:"user_uid"`
+}
+
+type GetPersonalFoldersResponse {
+	Folders []*PersonalFolder `json:"folders"`
+}
+
+type PersonalFolder {
+	FolderUID    string `json:"folder_uid"`
+	FolderNumber string `json:"folder_number"`
+	FolderName   string `json:"folder_name"`
+}
+
+type AddPersonalFolderRequest {
+	UserUID    string `path:"user_uid"`
+	FolderName string `json:"folder_name"`
+}
+
+type AddPersonalFolderResponse {
+	FolderUID    string `json:"folder_uid"`
+	FolderNumber string `json:"folder_number"`
+}
+
+type UpdatePersonalFolderRequest {
+	UserUID    string `path:"user_uid"`
+	FolderUID  string `path:"folder_uid"`
+	FolderName string `json:"folder_name"`
+}
+
+type UpdatePersonalFolderResponse {
+	Message string `json:"message"`
+}
+
+type DeletePersonalFolderRequest {
+	UserUID   string `path:"user_uid"`
+	FolderUID string `path:"folder_uid"`
+}
+
+type DeletePersonalFolderResponse {
+	Message string `json:"message"`
+}
+
+@server(
+	group: customer/workspace
+	middleware: JWT
+)
+service binghuang-api {
+	@doc(
+		summary: "根据文件编号获取工作空间区域内容"
+	)
+	@handler GetFolderNumberWorkspaceContent
+	get /customer/:user_uid/personal/folders/workspace/content (GetFolderNumberWorkspaceContentRequest) returns (GetFolderNumberWorkspaceContentResponse)
+	
+	@doc(
+		summary: "根据协作信息获取工作空间区域内容"
+	)
+	@handler GetFolderNumberShareWorkspaceContent
+	get /customer/:user_uid/personal/folders/workspace/content/share (GetFolderNumberShareWorkspaceContentRequest) returns (GetFolderNumberShareWorkspaceContentResponse)
+	
+	@doc(
+		summary: "根据文件UID获取工作空间区域内容"
+	)
+	@handler GetWorkspaceContent
+	get /customer/:user_uid/personal/folders/:folder_uid/workspace/content (GetWorkspaceContentRequest) returns (GetWorkspaceContentResponse)
+	
+	@doc(
+		summary: "添加工作空间"
+	)
+	@handler AddWorkspace
+	post /customer/:user_uid/personal/folder/:folder_uid/workspace (AddWorkspaceRequest) returns (AddWorkspaceResponse)
+	
+	@doc(
+		summary: "更新工作空间"
+	)
+	@handler UpdateWorkspace
+	put /customer/:user_uid/personal/folder/:folder_uid/workspace/:workspace_uid (UpdateWorkspaceRequest) returns (UpdateWorkspaceResponse)
+	
+	@doc(
+		summary: "删除工作空间"
+	)
+	@handler DeleteWorkspace
+	delete /customer/:user_uid/personal/folder/:folder_uid/workspace/:workspace_uid (DeleteWorkspaceRequest) returns (DeleteWorkspaceResponse)
+	
+	@doc(
+		summary: "打开或关闭工作区域"
+	)
+	@handler UpdateWorkspaceSwitch
+	put /customer/:user_uid/personal/folder/:folder_uid/workspace/switch (UpdateWorkspaceSwitchRequest) returns (UpdateWorkspaceSwitchResponse)
+}
+
+type GetWorkspaceContentRequest {
+	UserUID   string `path:"user_uid"`
+	FolderUID string `path:"folder_uid"`
+}
+
+type GetWorkspaceContentResponse {
+	Authority           string               `json:"authority"`
+	ShareUID            string               `json:"share_uid"`
+	FolderUID           string               `json:"folder_uid"`
+	FolderNumber        string               `json:"folder_number"`
+	FolderName          string               `json:"folder_name"`
+	ActiveWorkspaceUIDs []string             `json:"active_workspace_uids"`
+	PersonalWorkspaces  []*PersonalWorkspace `json:"personal_workspaces"`
+}
+
+type GetFolderNumberWorkspaceContentRequest {
+	UserUID      string `path:"user_uid"`
+	FolderNumber string `form:"folder_number"`
+}
+
+type GetFolderNumberWorkspaceContentResponse {
+	FolderUID           string               `json:"folder_uid"`
+	FolderNumber        string               `json:"folder_number"`
+	FolderName          string               `json:"folder_name"`
+	ActiveWorkspaceUIDs []string             `json:"active_workspace_uids"`
+	PersonalWorkspaces  []*PersonalWorkspace `json:"personal_workspaces"`
+}
+
+type AddWorkspaceRequest {
+	UserUID       string `path:"user_uid"`
+	FolderUID     string `path:"folder_uid"`
+	WorkspaceName string `json:"workspace_name"`
+}
+
+type AddWorkspaceResponse {
+	Message string `json:"message"`
+}
+
+type UpdateWorkspaceRequest {
+	UserUID       string `path:"user_uid"`
+	FolderUID     string `path:"folder_uid"`
+	WorkspaceUID  string `path:"workspace_uid"`
+	WorkspaceName string `json:"workspace_name"`
+}
+
+type UpdateWorkspaceResponse {
+	Message string `json:"message"`
+}
+
+type DeleteWorkspaceRequest {
+	UserUID      string `path:"user_uid"`
+	FolderUID    string `path:"folder_uid"`
+	WorkspaceUID string `path:"workspace_uid"`
+}
+
+type DeleteWorkspaceResponse {
+	Message string `json:"message"`
+}
+
+type UpdateWorkspaceSwitchRequest {
+	UserUID             string   `path:"user_uid"`
+	FolderUID           string   `path:"folder_uid"`
+	ActiveWorkspaceUIDs []string `json:"active_workspace_uids"`
+}
+
+type UpdateWorkspaceSwitchResponse {
+	Message string `json:"message"`
+}
+
+type GetFolderNumberShareWorkspaceContentRequest {
+	UserUID      string `path:"user_uid"`
+	FolderNumber string `form:"folder_number"`
+}
+
+type GetFolderNumberShareWorkspaceContentResponse {
+	Authority           string               `json:"authority"`
+	ShareUID            string               `json:"share_uid"`
+	FolderUID           string               `json:"folder_uid"`
+	FolderNumber        string               `json:"folder_number"`
+	FolderName          string               `json:"folder_name"`
+	ActiveWorkspaceUIDs []string             `json:"active_workspace_uids"`
+	PersonalWorkspaces  []*PersonalWorkspace `json:"personal_workspaces"`
+}
+
+type PersonalWorkspace {
+	IsOpen        bool               `json:"is_open"`
+	WorkspaceUID  string             `json:"workspace_uid"`
+	WorkspaceName string             `json:"workspace_name"`
+	WebLinks      []*PersonalWebLink `json:"web_links"`
+}
+
+@server(
+	group: customer/weblink
+	middleware: JWT
+)
+service binghuang-api {
+	@doc(
+		summary: "更新工作区域链接排序"
+	)
+	@handler UpdateWorkspaceWebLinks
+	put /customer/:user_uid/personal/folder/:folder_uid/workspace/:workspace_uid/sort (UpdateWorkspaceWebLinksRequest) returns (UpdateWorkspaceWebLinksResponse)
+	
+	@doc(
+		summary: "查看最近更新的收藏链接"
+	)
+	@handler GetRecentPersonalWebLink
+	get /customer/:user_uid/personal/weblink/recent (GetRecentPersonalWebLinkRequest) returns (GetRecentPersonalWebLinkResponse)
+	
+	@doc(
+		summary: "查看回收站收藏链接"
+	)
+	@handler GetRecyclingPersonalWebLink
+	get /customer/:user_uid/personal/weblink/recycling (GetRecyclingPersonalWebLinkRequest) returns (GetRecyclingPersonalWebLinkResponse)
+	
+	@doc(
+		summary: "回收站彻底删除的收藏链接"
+	)
+	@handler DeleteForeverPersonalWebLink
+	delete /customer/:user_uid/personal/weblink/:link_uid/forever (DeleteForeverPersonalWebLinkRequest) returns (DeleteForeverPersonalWebLinkResponse)
+	
+	@doc(
+		summary: "回收站恢复收藏链接"
+	)
+	@handler RestoreDeletePersonalWebLink
+	put /customer/:user_uid/personal/weblink/:link_uid/restore (RestoreDeletePersonalWebLinkRequest) returns (RestoreDeletePersonalWebLinkResponse)
+	
+	@doc(
+		summary: "添加收藏链接"
+	)
+	@handler AddPersonalWebLink
+	post /customer/:user_uid/personal/folder/:folder_uid/workspace/:workspace_uid/weblink (AddPersonalWebLinkRequest) returns (AddPersonalWebLinkResponse)
+	
+	@doc(
+		summary: "更新收藏链接"
+	)
+	@handler UpdatePersonalWebLink
+	put /customer/:user_uid/personal/folder/:folder_uid/workspace/:workspace_uid/weblink/:link_uid (UpdatePersonalWebLinkRequest) returns (UpdatePersonalWebLinkResponse)
+	
+	@doc(
+		summary: "删除收藏链接"
+	)
+	@handler DeletePersonalWebLink
+	delete /customer/:user_uid/personal/folder/:folder_uid/workspace/:workspace_uid/weblink/:link_uid (DeletePersonalWebLinkRequest) returns (DeletePersonalWebLinkResponse)
+	
+	@doc(
+		summary: "添加收藏本地文件链接"
+	)
+	@handler AddPersonalLocalFileLink
+	post /customer/:user_uid/personal/folder/:folder_uid/workspace/:workspace_uid/local (AddPersonalLocalFileLinkRequest) returns (AddPersonalLocalFileLinkResponse)
+}
+
+type RestoreDeletePersonalWebLinkRequest {
+	UserUID string `path:"user_uid"`
+	LinkUID string `path:"link_uid"`
+}
+
+type RestoreDeletePersonalWebLinkResponse {
+	Message string `json:"message"`
+}
+
+type DeleteForeverPersonalWebLinkRequest {
+	UserUID string `path:"user_uid"`
+	LinkUID string `path:"link_uid"`
+}
+
+type DeleteForeverPersonalWebLinkResponse {
+	Message string `json:"message"`
+}
+
+type GetRecyclingPersonalWebLinkRequest {
+	UserUID string `path:"user_uid"`
+}
+
+type GetRecyclingPersonalWebLinkResponse {
+	WebLinks []*PersonalWebLink `json:"web_links"`
+}
+
+type GetRecentPersonalWebLinkRequest {
+	UserUID string `path:"user_uid"`
+}
+
+type GetRecentPersonalWebLinkResponse {
+	WebLinks []*RecentWebLink `json:"web_links"`
+}
+
+type RecentWebLink {
+	LinkUID     string `json:"link_uid"`
+	Title       string `json:"title"`
+	Image       string `json:"image"`
+	Link        string `json:"link"`
+	FileType    string `json:"file_type"`
+	Description string `json:"description"`
+	UpdatedAt   string `json:"updated_at"`
+}
+
+type DeletePersonalWebLinkRequest {
+	UserUID      string `path:"user_uid"`
+	FolderUID    string `path:"folder_uid"`
+	WorkspaceUID string `path:"workspace_uid"`
+	LinkUID      string `path:"link_uid"`
+}
+
+type DeletePersonalWebLinkResponse {
+	Message string `json:"message"`
+}
+
+type UpdatePersonalWebLinkRequest {
+	UserUID      string `path:"user_uid"`
+	FolderUID    string `path:"folder_uid"`
+	WorkspaceUID string `path:"workspace_uid"`
+	LinkUID      string `path:"link_uid"`
+	Title        string `json:"title"`
+	Description  string `json:"description"`
+}
+
+type UpdatePersonalWebLinkResponse {
+	Message string `json:"message"`
+}
+
+type AddPersonalWebLinkRequest {
+	UserUID      string `path:"user_uid"`
+	FolderUID    string `path:"folder_uid"`
+	WorkspaceUID string `path:"workspace_uid"`
+	Title        string `json:"title,optional"`
+	URL          string `json:"url"`
+}
+
+type AddPersonalLocalFileLinkRequest {
+	UserUID      string `path:"user_uid"`
+	FolderUID    string `path:"folder_uid"`
+	WorkspaceUID string `path:"workspace_uid"`
+	File         []byte `json:"file,optional"`
+	Filename     string `json:"filename,optional"`
+	FileType     string `json:"file_type,optional"`
+}
+
+type AddPersonalLocalFileLinkResponse {
+	Message string `json:"message"`
+}
+
+type AddPersonalWebLinkResponse {
+	Message string `json:"message"`
+}
+
+type UpdateWorkspaceWebLinksRequest {
+	UserUID         string             `path:"user_uid"`
+	FolderUID       string             `path:"folder_uid"`
+	WorkspaceUID    string             `path:"workspace_uid"`
+	OldWorkspaceUID string             `json:"old_workspace_uid"`
+	WebLinks        []*PersonalWebLink `json:"web_links"`
+}
+
+type UpdateWorkspaceWebLinksResponse {
+	Message string `json:"message"`
+}
+
+type PersonalWebLink {
+	LinkUID     string `json:"link_uid"`
+	Title       string `json:"title"`
+	Image       string `json:"image"`
+	Link        string `json:"link"`
+	FileType    string `json:"file_type"`
+	Description string `json:"description"`
+	Sequence    int    `json:"sequence"`
+}

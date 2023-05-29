@@ -1,0 +1,133 @@
+.upgrade-user-declare {
+    border-radius: 8px;
+}
+
+.upgrade-user-declare .ant-card-body {
+    padding: 12px;
+}
+
+.upgrade-user-declare-active {
+    border: 1px solid #067bef;
+    background: rgba(6,123,239,.05);
+}
+
+.upgrade-price-desc {
+    margin-left: 18px;
+    margin-right: 18px;
+}
+
+.upgrade-space-desc {
+    margin-top: 13px;
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.upgrade-desc {
+    margin-left: 5px;
+    border-bottom: 1px dashed #ccc;
+}
+
+.upgrade-pay {
+    display: flex;
+    align-items: center; /*对齐*/
+    justify-content: center; /*居中*/
+}
+
+.upgrade-pay-btn {
+    padding: 0;
+    border-radius: 4px;
+    margin-left: 13px;
+}
+
+.upgrade-pay-declare {
+    border-radius: 8px;
+}
+
+.upgrade-pay-declare .ant-card-body {
+    padding: 12px;
+}
+
+.upgrade-pay-declare-active {
+    border: 1px solid #067bef;
+    background: rgba(6,123,239,.05);
+}
+
+.recharge-image-container {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    margin-top: -110px;
+    margin-left: -100px;
+    text-align: center;
+}
+
+.return-previous-step .ant-page-header {
+    padding: 0;
+}
+
+.return-previous-step .ant-page-header-heading-left {
+    margin: 0;
+}
+
+.return-previous-step .ant-page-header-heading-title {
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: 0;
+}
+
+.recharge-problem-desc {
+    color: #9aa5b8;
+    font-size: 12px;
+    margin-top: 40px;
+}
+
+.recharge-qrcode-image {
+    border-color: transparent;
+    box-shadow: 0 1px 2px -2px rgb(0 0 0 / 16%), 0 3px 6px 0 rgb(0 0 0 / 12%), 0 5px 12px 4px rgb(0 0 0 / 9%);
+    width: 122px;
+    min-height: 122px;
+    margin: 15px auto;
+}
+
+.recharge-qrcode-image > .ant-card-body {
+    padding: 0;
+}
+
+.recharge-qrcode-mark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 120px;
+    width: 120px;
+    line-height: 120px;
+    background-color:#fff;
+    filter:Alpha(Opacity=60);
+    opacity:0.95;
+    font-size: 12px;
+}
+
+.recharge-pay-success {
+    /*margin-top: 40px;*/
+    display: flex;
+    align-items: center; /*对齐*/
+    justify-content: center; /*居中*/
+}
+
+.recharge-success-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -110px;
+    margin-left: -100px;
+    text-align: center;
+}
+
+.recharge-success-desc {
+    font-size: 14px;
+    margin-top: 30px;
+}
+
+.order-transaction-table-row {
+    font-size: 13px;
+    color: #6c7d8f;
+}

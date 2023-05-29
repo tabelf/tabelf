@@ -1,0 +1,312 @@
+.site-layout-background {
+    background: #ffffff;
+    padding: 0;
+    border-bottom: 1px solid #e9edf2;
+}
+
+.header-search {
+    width: 300px;
+    margin-left: 35px;
+    opacity: 0.7;
+}
+
+.header-search .ant-btn {
+    text-align: left;
+}
+
+.header-search .ant-btn:hover, .header-search .ant-btn:focus {
+    border-color: #d9d9d9;
+    background: #fff;
+    color: rgba(0, 0, 0, 0.85);
+}
+
+.header-search .ant-input-affix-wrapper {
+    border-radius: 16px;
+}
+
+.header-user {
+    text-align: right;
+    margin-right: 35px;
+}
+
+.ant-popover-inner {
+    width: 300px;
+}
+
+.user-base-info-form .ant-upload-list-item-actions .ant-btn {
+    color: #fff;
+}
+
+.user-base-info-form .ant-upload-select {
+    border-radius: 50%;
+    border: 0;
+}
+
+.user-base-info-form .ant-upload-list-item, .ant-upload-list-item-info {
+    border: 0;
+    padding: 0;
+    border-radius: 50%;
+}
+
+.user-base-info-form .ant-typography {
+    margin-bottom: 0;
+}
+
+.user-base-info-form .ant-typography-edit-content {
+    margin-left: 12px;
+    width: 315px;
+}
+
+.user-base-info .ant-modal-confirm-btns .ant-btn {
+    display: none;
+}
+
+.user-base-info .ant-modal-content {
+    border-radius: 6px;
+}
+
+.user-base-info .ant-form-item-label > label {
+    color: #6c7d8f;
+    font-size: 13px;
+}
+
+.user-base-info .ant-input {
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.user-base-info .ant-btn {
+    height: 30px;
+    font-size: 13px;
+    border-radius: 4px;
+}
+
+.user-base-info-image {
+    position: relative;
+}
+
+.user-base-info-image:hover .ant-upload > span {
+    opacity: 1;
+}
+
+.ant-upload-list-picture-card .ant-upload-list-item-info:before {
+    background-color: #00000080;
+}
+
+.user-base-edit-image {
+    position: absolute;
+    color: #fff;
+    opacity: 0;
+}
+
+
+.search-content-tab .ant-list-item {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.search-content-tab .ant-tabs-nav {
+    margin-bottom: 8px;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.search-content-tab .ant-list-item {
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.search-content .ant-modal-body {
+    padding-top: 12px;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.search-content .ant-input-affix-wrapper {
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.search-content .ant-modal-content {
+    border-radius: 6px;
+}
+
+.search-content .ant-spin-container {
+    height: 300px;
+    overflow: auto;
+}
+
+.search-content .ant-empty-normal {
+    margin-top: 110px;
+    margin-bottom: 110px;
+}
+
+
+.invite-modal .ant-modal-content {
+    border-radius: 6px;
+}
+
+.invite-modal .ant-modal-body {
+    padding-top: 14px;
+}
+
+.invite-modal .ant-modal-content {
+    overflow: auto;
+}
+
+.invite-modal .ant-card-body {
+    padding: 12px 0;
+}
+
+.invite-user-list {
+    margin-top: 10px;
+    height: 290px;
+    overflow: auto;
+}
+
+.invite-user-list .ant-list-item {
+    padding: 2px 8px;
+    border-radius: 6px;
+    margin: 5px 0;
+}
+
+.invite-user-list .ant-list-item-meta {
+    align-items: center;
+    justify-content: center;
+}
+
+.invite-user-list .ant-list-item-meta-title {
+    font-size: 13px;
+}
+
+.invite-user-list .ant-list-item-meta-description {
+    font-size: 13px;
+}
+
+.transaction-layout-background {
+    background: #f4f4f4;
+    height: 100vh;
+}
+
+.message-menu-extra .ant-dropdown-menu {
+    border-radius: 6px;
+}
+
+.message-menu-extra .ant-dropdown-menu-item, .ant-dropdown-menu-submenu-title {
+    color: #212930;
+    font-size: 13px;
+}
+
+.user-message-popover .ant-popover-inner-content {
+    padding: 0;
+}
+
+.user-message-popover .ant-tabs-content-holder {
+    height: 400px;
+    overflow-y: auto;
+}
+
+/* 设置自定义滚动条 */
+.user-message-popover .ant-tabs-content-holder::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+.user-message-popover .ant-tabs-content-holder::-webkit-scrollbar-button {
+    width: 0px;
+    height: 0px;
+    display: none;
+}
+
+.user-message-popover .ant-tabs-content-holder::-webkit-scrollbar-corner {
+    background-color: transparent;
+}
+
+.user-message-popover .ant-tabs-content-holder::-webkit-scrollbar-thumb {
+    border: 4px solid rgba(0, 0, 0, 0);
+    height: 6px;
+    border-radius: 25px;
+    background-clip: padding-box;
+    background-color: rgba(0, 0, 0, 0.30);
+}
+
+.user-message-popover .ant-popover-inner {
+    border-radius: 6px;
+}
+
+.user-message-tabs .ant-tabs-nav {
+    padding: 0 16px;
+    margin: 0;
+}
+
+.user-message-tabs .ant-list-item-meta {
+    padding: 0 16px;
+}
+
+.message-read-description {
+    color: #aaa!important;
+    font-size: 13px;
+}
+
+.message-read-title {
+    color: #888!important;
+    font-size: 13px;
+}
+
+.message-unread-description {
+    font-size: 13px;
+}
+
+.message-unread-title {
+    font-size: 13px;
+}
+
+.user-message-tabs .ant-list-item-action {
+    margin-left: 0;
+}
+
+.message-del-extra {
+    font-size: 13px;
+    opacity: 0;
+}
+
+.user-message-tabs .ant-list-item:hover .message-del-extra {
+    font-size: 13px;
+    opacity: 1;
+}
+
+.account-image-menu-extra .ant-dropdown-menu {
+    border-radius: 6px;
+}
+
+.account-image-menu-extra .ant-dropdown-menu-item, .ant-dropdown-menu-submenu-title {
+    color: #212930;
+    font-size: 13px;
+}
+
+.account-username {
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 13px;
+    max-width: 70px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.search-content-tab .ant-list-item-meta-description, .search-content-tab .ant-list-item-meta-title {
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.account-membership-label .ant-tag {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    border-radius: 100px;
+    padding: 0;
+}
+
+/*.account-membership-label .ant-tag > .anticon + span {*/
+/*    margin-left: 2px;*/
+/*}*/
